@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
+
 // import MapboxLanguage from '@mapbox/mapbox-gl-language'
 // import { mapStyle } from '~/constant/map'
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -30,7 +31,9 @@ onMounted(() => {
     center: mapCenter.value as LngLatLike,
     zoom: 15,
     preserveDrawingBuffer: true,
+    hash: true,
   })
+  map.scrollZoom.setWheelZoomRate(1)
   // map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
   window.map = map
 
