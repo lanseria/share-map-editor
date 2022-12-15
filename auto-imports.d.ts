@@ -38,6 +38,7 @@ declare global {
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
+  const handleCollapsed: typeof import('./src/composables/store')['handleCollapsed']
   const handleMapEdit: typeof import('./src/composables/store')['handleMapEdit']
   const handleMapExitEdit: typeof import('./src/composables/store')['handleMapExitEdit']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
@@ -321,6 +322,7 @@ declare module 'vue' {
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
+    readonly handleCollapsed: UnwrapRef<typeof import('./src/composables/store')['handleCollapsed']>
     readonly handleMapEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapEdit']>
     readonly handleMapExitEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapExitEdit']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>

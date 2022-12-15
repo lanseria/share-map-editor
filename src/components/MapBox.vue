@@ -17,8 +17,6 @@ mapboxgl.accessToken
 let map: mapboxgl.Map | null = null
 const mapContainer = shallowRef()
 
-const drawing = false
-
 const updateMap = () => {
   //
 }
@@ -46,15 +44,6 @@ onMounted(() => {
     updateMap()
   })
 })
-const handleCollapsed = () => {
-  if (drawing)
-    console.warn('drawing')
-
-  collapsed.value = !collapsed.value
-  setTimeout(() => {
-    window.map.resize()
-  }, 300)
-}
 </script>
 
 <template>
@@ -62,7 +51,7 @@ const handleCollapsed = () => {
     ref="mapContainer"
     class="h-full w-full top-0 bottom-0 left-0 right-0 relative"
   >
-    <div class="sidebar-handle absolute right-0 bottom-9 px-4 py-1 bg-dark cursor-pointer hidden md:block z-10" @click="handleCollapsed()">
+    <div v-show="isEdit" class="sidebar-handle absolute right-0 bottom-9 px-4 py-1 bg-light dark:bg-dark cursor-pointer hidden md:block z-10" @click="handleCollapsed()">
       <div v-if="collapsed" class="i-carbon:caret-right" />
       <div v-else class="i-carbon:caret-left" />
     </div>
