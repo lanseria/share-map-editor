@@ -9,6 +9,8 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const PointTypeEnum: typeof import('./src/composables/constant')['PointTypeEnum']
+  const PointTypeEnumMap: typeof import('./src/composables/constant')['PointTypeEnumMap']
   const activeTab: typeof import('./src/composables/store')['activeTab']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -27,6 +29,7 @@ declare global {
   const createReactiveFn: typeof import('@vueuse/core')['createReactiveFn']
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
+  const currentProperties: typeof import('./src/composables/store')['currentProperties']
   const customRef: typeof import('vue')['customRef']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
@@ -41,6 +44,7 @@ declare global {
   const handleCollapsed: typeof import('./src/composables/store')['handleCollapsed']
   const handleMapEdit: typeof import('./src/composables/store')['handleMapEdit']
   const handleMapExitEdit: typeof import('./src/composables/store')['handleMapExitEdit']
+  const handleSetPoint: typeof import('./src/composables/store')['handleSetPoint']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./src/composables/dark')['isDark']
@@ -52,6 +56,7 @@ declare global {
   const isRef: typeof import('vue')['isRef']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
+  const mapLoad: typeof import('./src/composables/mapLoad')['mapLoad']
   const mapStyle: typeof import('./src/composables/mapStyle')['mapStyle']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
@@ -293,6 +298,8 @@ declare module 'vue' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly PointTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['PointTypeEnum']>
+    readonly PointTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PointTypeEnumMap']>
     readonly activeTab: UnwrapRef<typeof import('./src/composables/store')['activeTab']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -311,6 +318,7 @@ declare module 'vue' {
     readonly createReactiveFn: UnwrapRef<typeof import('@vueuse/core')['createReactiveFn']>
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
+    readonly currentProperties: UnwrapRef<typeof import('./src/composables/store')['currentProperties']>
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
@@ -325,6 +333,7 @@ declare module 'vue' {
     readonly handleCollapsed: UnwrapRef<typeof import('./src/composables/store')['handleCollapsed']>
     readonly handleMapEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapEdit']>
     readonly handleMapExitEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapExitEdit']>
+    readonly handleSetPoint: UnwrapRef<typeof import('./src/composables/store')['handleSetPoint']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
@@ -336,6 +345,7 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
+    readonly mapLoad: UnwrapRef<typeof import('./src/composables/mapLoad')['mapLoad']>
     readonly mapStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['mapStyle']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>

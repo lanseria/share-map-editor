@@ -6,8 +6,6 @@ import mapboxgl from 'mapbox-gl'
 // import { mapStyle } from '~/constant/map'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
-import { collapsed, mapCenter } from '~/composables/store'
-// import { mapLoad } from '~/composables/mapLoad'
 
 // const keys = useMagicKeys()
 
@@ -31,7 +29,7 @@ onMounted(() => {
     preserveDrawingBuffer: true,
     hash: true,
   })
-  map.scrollZoom.setWheelZoomRate(1)
+  // map.scrollZoom.setWheelZoomRate(1)
   // map.scrollZoom.setZoomRate(1)
   // map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
   window.map = map
@@ -40,7 +38,7 @@ onMounted(() => {
 
   map.on('load', () => {
     map!.resize()
-    // mapLoad()
+    mapLoad()
     updateMap()
   })
 })
