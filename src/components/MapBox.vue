@@ -34,6 +34,7 @@ onMounted(() => {
     hash: true,
   })
   map.scrollZoom.setWheelZoomRate(1)
+  // map.scrollZoom.setZoomRate(1)
   // map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
   window.map = map
 

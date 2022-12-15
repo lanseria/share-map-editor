@@ -15,13 +15,13 @@
     <div class="flex-grow flex justify-end">
       <div style="height: 42px" />
       <div class="flex items-center" style="font-size: 10px">
-        <div class="hidden md:flex pl-3 border-l border-solid border-gray-700 h-full items-center">
+        <div class="hidden md:flex pl-3 border-l border-solid h-full items-center">
           <ASpace>
-            <a-button type="text">
-              编辑地图
+            <a-button v-if="isEdit" type="text" @click="handleMapExitEdit">
+              退出编辑
             </a-button>
-            <a-button type="text">
-              保存
+            <a-button v-else type="text" @click="handleMapEdit">
+              编辑地图
             </a-button>
             <a-dropdown :popup-max-height="false">
               <a-button>未登录 <icon-down /></a-button>
@@ -44,7 +44,7 @@
       }"
     >
       <div>
-        <ToolBar />
+        <ToolBar v-show="isEdit" />
       </div>
     </div>
   </div>
