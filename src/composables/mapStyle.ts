@@ -7,7 +7,15 @@ export const mapStyle: mapboxgl.Style = {
       type: 'vector',
       url: 'mapbox://mapbox.mapbox-streets-v8',
     },
-
+    'osm-local': {
+      tiles: [
+        'https://openstreetmap.vip.cpolar.top/tile/{z}/{x}/{y}.png',
+        // 'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      ],
+      type: 'raster',
+      tileSize: 256,
+      maxzoom: 20,
+    },
     'osm': {
       tiles: [
         // 'https://openstreetmap.vip.cpolar.top/tile/{z}/{x}/{y}.png',
@@ -26,6 +34,11 @@ export const mapStyle: mapboxgl.Style = {
     //     'background-color': 'rgba(255,255,255,0.5)',
     //   },
     // },
+    {
+      id: 'osm-local',
+      source: 'osm-local',
+      type: 'raster',
+    },
     {
       id: 'osm',
       source: 'osm',
