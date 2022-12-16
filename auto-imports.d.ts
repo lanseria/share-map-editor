@@ -9,6 +9,7 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const LayerStyleList: typeof import('./src/composables/constant')['LayerStyleList']
   const LineStringTypeEnum: typeof import('./src/composables/constant')['LineStringTypeEnum']
   const LineStringTypeEnumMap: typeof import('./src/composables/constant')['LineStringTypeEnumMap']
   const MAP_LAYER_POINT: typeof import('./src/composables/constant')['MAP_LAYER_POINT']
@@ -74,7 +75,7 @@ declare global {
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
   const mapFeatures: typeof import('./src/composables/store')['mapFeatures']
   const mapLoad: typeof import('./src/composables/mapLoad')['mapLoad']
-  const mapStyle: typeof import('./src/composables/mapStyle')['mapStyle']
+  const mapStyle: typeof import('./src/composables/store')['mapStyle']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
   const onActivated: typeof import('vue')['onActivated']
@@ -96,6 +97,8 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const osmLocalStyle: typeof import('./src/composables/mapStyle')['osmLocalStyle']
+  const osmStyle: typeof import('./src/composables/mapStyle')['osmStyle']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const pushFeatures: typeof import('./src/composables/store')['pushFeatures']
@@ -317,6 +320,7 @@ declare module 'vue' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LayerStyleList: UnwrapRef<typeof import('./src/composables/constant')['LayerStyleList']>
     readonly LineStringTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnum']>
     readonly LineStringTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnumMap']>
     readonly MAP_LAYER_POINT: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POINT']>
@@ -382,7 +386,7 @@ declare module 'vue' {
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
     readonly mapFeatures: UnwrapRef<typeof import('./src/composables/store')['mapFeatures']>
     readonly mapLoad: UnwrapRef<typeof import('./src/composables/mapLoad')['mapLoad']>
-    readonly mapStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['mapStyle']>
+    readonly mapStyle: UnwrapRef<typeof import('./src/composables/store')['mapStyle']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
     readonly onActivated: UnwrapRef<typeof import('vue')['onActivated']>
@@ -404,6 +408,8 @@ declare module 'vue' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly osmLocalStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['osmLocalStyle']>
+    readonly osmStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['osmStyle']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pushFeatures: UnwrapRef<typeof import('./src/composables/store')['pushFeatures']>

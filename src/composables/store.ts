@@ -8,6 +8,7 @@ export const collapsed = useStorage('share-map-collapsed', false)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = useStorage('share-map-center', [122.11837, 30.02002])
+export const mapStyle = useStorage('share-map-style', 'osm')
 export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<Feature<Polygon | Point | LineString>[]>
 
 export const currentProperties = ref(null) as Ref<any>
@@ -18,6 +19,11 @@ export const handleCollapsed = () => {
 
 watchDebounced(() => collapsed.value, () => {
   window.map.resize()
+}, { debounce: 300, maxWait: 600 })
+
+watchDebounced(() => mapStyle.value, () => {
+  const styleValue = LayerStyleList.find(item => item.value === mapStyle.value)
+  styleValue && window.map.setStyle(styleValue.style)
 }, { debounce: 300, maxWait: 600 })
 
 export const handleMapEdit = () => {

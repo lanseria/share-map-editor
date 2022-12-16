@@ -28,3 +28,41 @@ export enum PolygonTypeEnum {
 export const PolygonTypeEnumMap = {
   [PolygonTypeEnum.面]: '面',
 }
+const MapBoxStylePrefix = 'mapbox://styles/mapbox/'
+export const LayerStyleList = [
+  {
+    name: 'osm',
+    value: 'osm',
+    style: osmStyle,
+  },
+  {
+    name: 'osm-local',
+    value: 'osm-local',
+    style: osmLocalStyle,
+  },
+  {
+    name: 'satellite streets',
+    value: 'satellite',
+    style: `${MapBoxStylePrefix}satellite-streets-v12`,
+  },
+  {
+    name: 'light',
+    value: 'light',
+    style: `${MapBoxStylePrefix}light-v11`,
+  },
+  {
+    name: 'dark',
+    value: 'dark',
+    style: `${MapBoxStylePrefix}dark-v11`,
+  },
+  {
+    name: 'streets',
+    value: 'streets',
+    style: `${MapBoxStylePrefix}streets-v12`,
+  },
+  {
+    name: 'outdoors',
+    value: 'outdoors',
+    style: `${MapBoxStylePrefix}outdoors-v12`,
+  },
+]

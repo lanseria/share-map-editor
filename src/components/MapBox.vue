@@ -26,9 +26,10 @@ const updateMap = () => {
 }
 
 onMounted(() => {
+  const styleValue = LayerStyleList.find(item => item.value === mapStyle.value)
   map = new mapboxgl.Map({
     container: mapContainer.value,
-    style: mapStyle,
+    style: styleValue?.style,
     // style: 'mapbox://styles/mapbox/outdoors-v12',
     center: mapCenter.value as LngLatLike,
     zoom: 15,
@@ -75,6 +76,14 @@ onMounted(() => {
     <div v-show="isEdit" class="sidebar-handle absolute right-0 bottom-9 px-4 py-1 bg-light dark:bg-dark cursor-pointer hidden md:block z-10" @click="handleCollapsed()">
       <div v-if="collapsed" class="i-carbon:caret-right" />
       <div v-else class="i-carbon:caret-left" />
+    </div>
+    <div class="absolute left-0 top-0 bg-light dark:bg-dark flex items-center px-3 py-1 z-10">
+      <div>图层：</div>
+      <a-radio-group v-model="mapStyle">
+        <a-radio v-for="item in LayerStyleList" :key="item.value" :value="item.value">
+          {{ item.name }}
+        </a-radio>
+      </a-radio-group>
     </div>
   </div>
 </template>
