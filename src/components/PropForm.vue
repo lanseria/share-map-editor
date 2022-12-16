@@ -60,6 +60,14 @@ const handleDelete = () => {
       <a-form-item v-if="currentProperties['icon-size']" field="icon-size" label="图标大小">
         <a-slider v-model="(currentProperties['icon-size'])" :style="{ display: 'flex' }" :min="0.1" :max="1" :step="0.1" show-input />
       </a-form-item>
+      <a-form-item field="description" label="描述">
+        <a-textarea
+          v-model="currentProperties.description" :auto-size="{
+            minRows: 2,
+            maxRows: 5,
+          }"
+        />
+      </a-form-item>
 
       <a-form-item>
         <ASpace>

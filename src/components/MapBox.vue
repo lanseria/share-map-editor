@@ -2,6 +2,7 @@
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
+import MapboxLanguage from '@mapbox/mapbox-gl-language'
 import { mapStyle } from '~/composables/store'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -36,7 +37,7 @@ onMounted(() => {
   })
   // map.scrollZoom.setWheelZoomRate(1)
   // map.scrollZoom.setZoomRate(1)
-  // map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
+  map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
   window.map = map
 
   const draw = new MapboxDraw({

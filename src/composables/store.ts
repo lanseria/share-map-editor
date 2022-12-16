@@ -52,6 +52,7 @@ export const handleSetPolygon = (type: PolygonTypeEnum = PolygonTypeEnum.面) =>
       'line-color': '#e0be28',
       'line-width': 2,
       'line-opacity': 1,
+      'description': '',
     },
     type,
   }
@@ -70,6 +71,7 @@ export const handleSetLineString = (type: LineStringTypeEnum = LineStringTypeEnu
       'line-opacity': 1,
       'line-cap': 'round',
       'line-join': 'round',
+      'description': '',
     },
     type,
   }
@@ -87,6 +89,7 @@ export const handleSetPoint = (type: PointTypeEnum = PointTypeEnum.点) => {
     'icon-image': `${name}Icon`,
     'icon-size': 0.3,
     'type': type,
+    'description': '',
   }
   window.draw.changeMode('draw_point')
 }

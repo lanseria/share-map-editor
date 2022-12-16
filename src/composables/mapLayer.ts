@@ -1,4 +1,23 @@
 import * as turf from '@turf/turf'
+import mapboxgl from 'mapbox-gl'
+const popup = new mapboxgl.Popup({
+  anchor: 'bottom-left',
+  closeButton: false,
+  closeOnClick: true,
+  className: 'LayerPopup',
+})
+const handleFeatureHover = (e: any) => {
+  const map = window.map
+  const description = e.features[0].properties.description
+  const coordinates = e.features[0].geometry.coordinates.slice()
+  popup.setLngLat(coordinates).setHTML(description).addTo(map)
+}
+
+const handleFeatureHoverLeave = (_e: any) => {
+  const map = window.map
+  map.getCanvas().style.cursor = ''
+  popup.remove()
+}
 
 const handleFeatureClick = (e: any) => {
   if (!isEdit.value)
@@ -121,6 +140,8 @@ export const drawPoint = () => {
   })
 
   map.on('click', MAP_LAYER_POINT, handleFeatureClick)
+  map.on('mouseenter', MAP_LAYER_POINT, handleFeatureHover)
+  map.on('mouseleave', MAP_LAYER_POINT, handleFeatureHoverLeave)
 }
 
 export const reloadSourceLayer = () => {
