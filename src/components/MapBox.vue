@@ -2,14 +2,12 @@
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
+import { mapStyle } from '~/composables/store'
 
-// import MapboxLanguage from '@mapbox/mapbox-gl-language'
-// import { mapStyle } from '~/constant/map'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 
 import DrawLineString from '~/draw/linestring'
-import DrawRectangle from '~/draw/rectangle'
 
 import drawStyles from '~/draw/styles'
 
@@ -47,7 +45,6 @@ onMounted(() => {
     modes: {
       ...MapboxDraw.modes,
       draw_line_string: DrawLineString,
-      draw_rectangle: DrawRectangle,
     },
     styles: drawStyles,
   })

@@ -24,7 +24,11 @@ watchDebounced(() => collapsed.value, () => {
 watchDebounced(() => mapStyle.value, () => {
   const styleValue = LayerStyleList.find(item => item.value === mapStyle.value)
   styleValue && window.map.setStyle(styleValue.style)
-}, { debounce: 300, maxWait: 600 })
+  setTimeout(() => {
+    mapLoad()
+    reloadSourceLayer()
+  }, 100)
+}, { debounce: 100, maxWait: 200 })
 
 export const handleMapEdit = () => {
   isEdit.value = true

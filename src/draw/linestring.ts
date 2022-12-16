@@ -8,7 +8,7 @@ import { getDisplayMeasurements } from './util'
 const ExtendedLineStringMode = {
   ...MapboxDraw.modes.draw_line_string,
 
-  toDisplayFeatures(state, geojson, display) {
+  toDisplayFeatures(state: any, geojson: any, display: any) {
     const isActiveLine = geojson.properties.id === state.line.id
     geojson.properties.active = isActiveLine ? 'true' : 'false'
     if (!isActiveLine)

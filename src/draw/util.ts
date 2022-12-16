@@ -1,7 +1,7 @@
 import * as turf from '@turf/turf'
 import numeral from 'numeral'
 
-function getDisplayMeasurements(feature) {
+function getDisplayMeasurements(feature: any) {
   // should log both metric and standard display strings for the current drawn feature
 
   // metric calculation
