@@ -9,9 +9,20 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const LineStringTypeEnum: typeof import('./src/composables/constant')['LineStringTypeEnum']
+  const LineStringTypeEnumMap: typeof import('./src/composables/constant')['LineStringTypeEnumMap']
+  const MAP_LAYER_POINT: typeof import('./src/composables/constant')['MAP_LAYER_POINT']
+  const MAP_LAYER_POLYGON: typeof import('./src/composables/constant')['MAP_LAYER_POLYGON']
+  const MAP_LAYER_POLYGON_FILL: typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_FILL']
+  const MAP_LAYER_POLYGON_OUTLINE: typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_OUTLINE']
+  const MAP_LAYER_STRINGLINE: typeof import('./src/composables/constant')['MAP_LAYER_STRINGLINE']
+  const MAP_SOURCE: typeof import('./src/composables/constant')['MAP_SOURCE']
   const PointTypeEnum: typeof import('./src/composables/constant')['PointTypeEnum']
   const PointTypeEnumMap: typeof import('./src/composables/constant')['PointTypeEnumMap']
+  const PolygonTypeEnum: typeof import('./src/composables/constant')['PolygonTypeEnum']
+  const PolygonTypeEnumMap: typeof import('./src/composables/constant')['PolygonTypeEnumMap']
   const activeTab: typeof import('./src/composables/store')['activeTab']
+  const addSource: typeof import('./src/composables/mapLayer')['addSource']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const collapsed: typeof import('./src/composables/store')['collapsed']
@@ -35,6 +46,9 @@ declare global {
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
+  const drawPoint: typeof import('./src/composables/mapLayer')['drawPoint']
+  const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const extendRef: typeof import('@vueuse/core')['extendRef']
@@ -44,7 +58,9 @@ declare global {
   const handleCollapsed: typeof import('./src/composables/store')['handleCollapsed']
   const handleMapEdit: typeof import('./src/composables/store')['handleMapEdit']
   const handleMapExitEdit: typeof import('./src/composables/store')['handleMapExitEdit']
+  const handleSetLineString: typeof import('./src/composables/store')['handleSetLineString']
   const handleSetPoint: typeof import('./src/composables/store')['handleSetPoint']
+  const handleSetPolygon: typeof import('./src/composables/store')['handleSetPolygon']
   const ignorableWatch: typeof import('@vueuse/core')['ignorableWatch']
   const inject: typeof import('vue')['inject']
   const isDark: typeof import('./src/composables/dark')['isDark']
@@ -56,6 +72,7 @@ declare global {
   const isRef: typeof import('vue')['isRef']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
+  const mapFeatures: typeof import('./src/composables/store')['mapFeatures']
   const mapLoad: typeof import('./src/composables/mapLoad')['mapLoad']
   const mapStyle: typeof import('./src/composables/mapStyle')['mapStyle']
   const markRaw: typeof import('vue')['markRaw']
@@ -81,6 +98,7 @@ declare global {
   const onUpdated: typeof import('vue')['onUpdated']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
+  const pushFeatures: typeof import('./src/composables/store')['pushFeatures']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
   const reactive: typeof import('vue')['reactive']
@@ -94,6 +112,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const reloadSourceLayer: typeof import('./src/composables/mapLayer')['reloadSourceLayer']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveDirective: typeof import('vue')['resolveDirective']
   const resolveRef: typeof import('@vueuse/core')['resolveRef']
@@ -298,9 +317,20 @@ declare module 'vue' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly LineStringTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnum']>
+    readonly LineStringTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnumMap']>
+    readonly MAP_LAYER_POINT: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POINT']>
+    readonly MAP_LAYER_POLYGON: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POLYGON']>
+    readonly MAP_LAYER_POLYGON_FILL: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_FILL']>
+    readonly MAP_LAYER_POLYGON_OUTLINE: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_OUTLINE']>
+    readonly MAP_LAYER_STRINGLINE: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_STRINGLINE']>
+    readonly MAP_SOURCE: UnwrapRef<typeof import('./src/composables/constant')['MAP_SOURCE']>
     readonly PointTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['PointTypeEnum']>
     readonly PointTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PointTypeEnumMap']>
+    readonly PolygonTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['PolygonTypeEnum']>
+    readonly PolygonTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PolygonTypeEnumMap']>
     readonly activeTab: UnwrapRef<typeof import('./src/composables/store')['activeTab']>
+    readonly addSource: UnwrapRef<typeof import('./src/composables/mapLayer')['addSource']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly collapsed: UnwrapRef<typeof import('./src/composables/store')['collapsed']>
@@ -324,6 +354,9 @@ declare module 'vue' {
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
+    readonly drawPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPoint']>
+    readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
@@ -333,7 +366,9 @@ declare module 'vue' {
     readonly handleCollapsed: UnwrapRef<typeof import('./src/composables/store')['handleCollapsed']>
     readonly handleMapEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapEdit']>
     readonly handleMapExitEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapExitEdit']>
+    readonly handleSetLineString: UnwrapRef<typeof import('./src/composables/store')['handleSetLineString']>
     readonly handleSetPoint: UnwrapRef<typeof import('./src/composables/store')['handleSetPoint']>
+    readonly handleSetPolygon: UnwrapRef<typeof import('./src/composables/store')['handleSetPolygon']>
     readonly ignorableWatch: UnwrapRef<typeof import('@vueuse/core')['ignorableWatch']>
     readonly inject: UnwrapRef<typeof import('vue')['inject']>
     readonly isDark: UnwrapRef<typeof import('./src/composables/dark')['isDark']>
@@ -345,6 +380,7 @@ declare module 'vue' {
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
+    readonly mapFeatures: UnwrapRef<typeof import('./src/composables/store')['mapFeatures']>
     readonly mapLoad: UnwrapRef<typeof import('./src/composables/mapLoad')['mapLoad']>
     readonly mapStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['mapStyle']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
@@ -370,6 +406,7 @@ declare module 'vue' {
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
+    readonly pushFeatures: UnwrapRef<typeof import('./src/composables/store')['pushFeatures']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>
@@ -383,6 +420,7 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly reloadSourceLayer: UnwrapRef<typeof import('./src/composables/mapLayer')['reloadSourceLayer']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveDirective: UnwrapRef<typeof import('vue')['resolveDirective']>
     readonly resolveRef: UnwrapRef<typeof import('@vueuse/core')['resolveRef']>

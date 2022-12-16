@@ -37,7 +37,10 @@ const handleActive = (item: TabItem) => {
         </button>
       </div>
     </div>
-    <div class="h-full shrink-0" />
+    <div class="h-full shrink-0">
+      <PropForm v-if="activeTab === 'edit'" />
+      <DataList v-if="activeTab === 'data'" />
+    </div>
   </div>
 </template>
 

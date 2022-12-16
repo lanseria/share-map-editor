@@ -1,11 +1,17 @@
 <script setup lang="ts">
 import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
+import MapboxDraw from '@mapbox/mapbox-gl-draw'
 
 // import MapboxLanguage from '@mapbox/mapbox-gl-language'
 // import { mapStyle } from '~/constant/map'
 import 'mapbox-gl/dist/mapbox-gl.css'
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
+
+import DrawLineString from '~/draw/linestring'
+import DrawRectangle from '~/draw/rectangle'
+
+import drawStyles from '~/draw/styles'
 
 // const keys = useMagicKeys()
 
@@ -34,12 +40,29 @@ onMounted(() => {
   // map.addControl(new MapboxLanguage({ defaultLanguage: 'zh-Hans' }))
   window.map = map
 
+  const draw = new MapboxDraw({
+    displayControlsDefault: false,
+    userProperties: true,
+    modes: {
+      ...MapboxDraw.modes,
+      draw_line_string: DrawLineString,
+      draw_rectangle: DrawRectangle,
+    },
+    styles: drawStyles,
+  })
+  window.draw = draw
+
   map.addControl(new mapboxgl.NavigationControl())
+  map.addControl(draw, 'top-left')
 
   map.on('load', () => {
     map!.resize()
     mapLoad()
     updateMap()
+  })
+  map.on('draw.create', (e) => {
+    pushFeatures(e.features[0])
+    draw.deleteAll()
   })
 })
 </script>

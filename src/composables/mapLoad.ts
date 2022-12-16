@@ -8,9 +8,9 @@ const loadImg = (name: string, url: string, sdf = false) => {
 }
 
 export const mapLoad = () => {
-  loadImg('点icon', '/img/点icon.png')
+  loadImg('点Icon', '/imgs/point-icon.png')
 
   setTimeout(() => {
-    // reloadSource()
+    reloadSourceLayer()
   }, 1000)
 }
