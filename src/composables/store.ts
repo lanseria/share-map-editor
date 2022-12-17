@@ -125,6 +125,8 @@ export const pushFeatures = (feature: Feature<Polygon | LineString | Point>) => 
     }
   })
   // TODO: filter type
+
   mapFeatures.value.push(feature)
+
   reloadSourceLayer()
 }

@@ -52,7 +52,7 @@ onMounted(() => {
   window.draw = draw
 
   map.addControl(new mapboxgl.NavigationControl())
-  map.addControl(draw, 'top-left')
+  map.addControl(draw)
 
   map.on('load', () => {
     map!.resize()
