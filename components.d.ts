@@ -10,7 +10,6 @@ declare module '@vue/runtime-core' {
     DataList: typeof import('./src/components/DataList.vue')['default']
     Header: typeof import('./src/components/Header.vue')['default']
     MapBox: typeof import('./src/components/MapBox.vue')['default']
-    MyIconFont: typeof import('./src/components/MyIconFont.vue')['default']
     PropForm: typeof import('./src/components/PropForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

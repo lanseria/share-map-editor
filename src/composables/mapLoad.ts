@@ -1,5 +1,8 @@
 const loadImg = (name: string, url: string, sdf = false) => {
   const map = window.map
+  if (map.hasImage(name))
+    return
+
   map.loadImage(url, (error, image) => {
     if (error)
       throw error
