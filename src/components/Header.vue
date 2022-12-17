@@ -12,6 +12,14 @@ const handleMailto = () => {
       data: encodeData,
     },
   })
+  const aLink = document.createElement('a')
+  aLink.href = `mailto:zhangchao564265135@qq.com?subject=New Info From MAPSHARE&body=${location.href}`
+  aLink.style.display = 'none'
+  // 触发点击
+  document.body.appendChild(aLink)
+  aLink.click()
+  // 然后移除
+  document.body.removeChild(aLink)
 }
 const handleOk = () => {
   //
