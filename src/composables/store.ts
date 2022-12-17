@@ -4,12 +4,14 @@ import * as turf from '@turf/turf'
 import { nanoid } from 'nanoid'
 import { LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum } from './constant'
 
+export type MyFeature = Feature<Polygon | Point | LineString>
+
 export const collapsed = useStorage('share-map-collapsed', false)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = useStorage('share-map-center', [122.11837, 30.02002])
 export const mapStyle = useStorage('share-map-style', 'osm')
-export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<Feature<Polygon | Point | LineString>[]>
+export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<MyFeature[]>
 
 export const currentProperties = ref(null) as Ref<any>
 

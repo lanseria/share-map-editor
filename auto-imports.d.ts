@@ -9,6 +9,7 @@ declare global {
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
   const EffectScope: typeof import('vue')['EffectScope']
+  const IV: typeof import('./src/composables/constant')['IV']
   const LayerStyleList: typeof import('./src/composables/constant')['LayerStyleList']
   const LineStringTypeEnum: typeof import('./src/composables/constant')['LineStringTypeEnum']
   const LineStringTypeEnumMap: typeof import('./src/composables/constant')['LineStringTypeEnumMap']
@@ -22,6 +23,7 @@ declare global {
   const PointTypeEnumMap: typeof import('./src/composables/constant')['PointTypeEnumMap']
   const PolygonTypeEnum: typeof import('./src/composables/constant')['PolygonTypeEnum']
   const PolygonTypeEnumMap: typeof import('./src/composables/constant')['PolygonTypeEnumMap']
+  const WordArray: typeof import('./src/composables/constant')['WordArray']
   const activeTab: typeof import('./src/composables/store')['activeTab']
   const addSource: typeof import('./src/composables/mapLayer')['addSource']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -45,6 +47,7 @@ declare global {
   const customRef: typeof import('vue')['customRef']
   const debouncedRef: typeof import('@vueuse/core')['debouncedRef']
   const debouncedWatch: typeof import('@vueuse/core')['debouncedWatch']
+  const decodeStr: typeof import('./src/composables/utils')['decodeStr']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
@@ -52,6 +55,7 @@ declare global {
   const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
+  const encodeStr: typeof import('./src/composables/utils')['encodeStr']
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
@@ -320,6 +324,7 @@ declare module 'vue' {
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly IV: UnwrapRef<typeof import('./src/composables/constant')['IV']>
     readonly LayerStyleList: UnwrapRef<typeof import('./src/composables/constant')['LayerStyleList']>
     readonly LineStringTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnum']>
     readonly LineStringTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnumMap']>
@@ -333,6 +338,7 @@ declare module 'vue' {
     readonly PointTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PointTypeEnumMap']>
     readonly PolygonTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['PolygonTypeEnum']>
     readonly PolygonTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PolygonTypeEnumMap']>
+    readonly WordArray: UnwrapRef<typeof import('./src/composables/constant')['WordArray']>
     readonly activeTab: UnwrapRef<typeof import('./src/composables/store')['activeTab']>
     readonly addSource: UnwrapRef<typeof import('./src/composables/mapLayer')['addSource']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -356,6 +362,7 @@ declare module 'vue' {
     readonly customRef: UnwrapRef<typeof import('vue')['customRef']>
     readonly debouncedRef: UnwrapRef<typeof import('@vueuse/core')['debouncedRef']>
     readonly debouncedWatch: UnwrapRef<typeof import('@vueuse/core')['debouncedWatch']>
+    readonly decodeStr: UnwrapRef<typeof import('./src/composables/utils')['decodeStr']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
@@ -363,6 +370,7 @@ declare module 'vue' {
     readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
+    readonly encodeStr: UnwrapRef<typeof import('./src/composables/utils')['encodeStr']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>

@@ -1,4 +1,35 @@
 <script lang="ts" setup>
+import type { MyFeature } from '~/composables/index'
+const router = useRouter()
+const route = useRoute()
+const dataVisible = ref(false)
+const decodeData = ref<MyFeature[]>([])
+const handleMailto = () => {
+  const encodeData = encodeStr(mapFeatures.value)
+  router.replace({
+    hash: route.hash,
+    query: {
+      data: encodeData,
+    },
+  })
+}
+const handleOk = () => {
+  //
+  mapFeatures.value = decodeData.value
+  router.replace({
+    hash: route.hash,
+  })
+}
+const handleCancel = () => {
+  //
+}
+onMounted(() => {
+  if (route.query.data) {
+    decodeData.value = decodeStr(route.query.data as string)
+    if (decodeData.value.length > 0)
+      dataVisible.value = true
+  }
+})
 </script>
 
 <template>
@@ -16,12 +47,18 @@
       <div style="height: 42px" />
       <div class="flex items-center" style="font-size: 10px">
         <ASpace class="pr-3">
-          <a-button v-if="isEdit" type="text">
+          <a-button v-if="isEdit" type="text" @click="handleMailto()">
             <template #icon>
               <icon-email />
             </template>
             邮件反馈
           </a-button>
+          <a-modal v-model:visible="dataVisible" @ok="handleOk" @cancel="handleCancel">
+            <template #title>
+              数据导入
+            </template>
+            <div>似乎有{{ decodeData.length }}条数据可以导入</div>
+          </a-modal>
         </ASpace>
         <div class="flex pl-3 border-l border-solid border-light-6 dark:border-gray-6 h-full items-center">
           <ASpace>

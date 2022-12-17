@@ -5,6 +5,9 @@ export const MAP_LAYER_POLYGON_OUTLINE = `${MAP_LAYER_POLYGON}Outline`
 export const MAP_LAYER_STRINGLINE = 'MapLayerStringLine'
 export const MAP_LAYER_POINT = 'MapLayerPoint'
 
+export const WordArray = 'LP6IRTBX'
+export const IV = '0102030405060708'
+
 export enum PointTypeEnum {
   点 = 'InitPoint',
 }
