@@ -40,6 +40,7 @@ declare global {
   const createEventHook: typeof import('@vueuse/core')['createEventHook']
   const createGlobalState: typeof import('@vueuse/core')['createGlobalState']
   const createInjectionState: typeof import('@vueuse/core')['createInjectionState']
+  const createMapFeature: typeof import('./src/composables/api')['createMapFeature']
   const createReactiveFn: typeof import('@vueuse/core')['createReactiveFn']
   const createSharedComposable: typeof import('@vueuse/core')['createSharedComposable']
   const createUnrefFn: typeof import('@vueuse/core')['createUnrefFn']
@@ -50,6 +51,7 @@ declare global {
   const decodeStr: typeof import('./src/composables/utils')['decodeStr']
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
+  const deleteMapFeature: typeof import('./src/composables/api')['deleteMapFeature']
   const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
   const drawPoint: typeof import('./src/composables/mapLayer')['drawPoint']
   const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
@@ -147,6 +149,7 @@ declare global {
   const unref: typeof import('vue')['unref']
   const unrefElement: typeof import('@vueuse/core')['unrefElement']
   const until: typeof import('@vueuse/core')['until']
+  const updateMapFeature: typeof import('./src/composables/api')['updateMapFeature']
   const useActiveElement: typeof import('@vueuse/core')['useActiveElement']
   const useArrayEvery: typeof import('@vueuse/core')['useArrayEvery']
   const useArrayFilter: typeof import('@vueuse/core')['useArrayFilter']
@@ -356,6 +359,7 @@ declare module 'vue' {
     readonly createEventHook: UnwrapRef<typeof import('@vueuse/core')['createEventHook']>
     readonly createGlobalState: UnwrapRef<typeof import('@vueuse/core')['createGlobalState']>
     readonly createInjectionState: UnwrapRef<typeof import('@vueuse/core')['createInjectionState']>
+    readonly createMapFeature: UnwrapRef<typeof import('./src/composables/api')['createMapFeature']>
     readonly createReactiveFn: UnwrapRef<typeof import('@vueuse/core')['createReactiveFn']>
     readonly createSharedComposable: UnwrapRef<typeof import('@vueuse/core')['createSharedComposable']>
     readonly createUnrefFn: UnwrapRef<typeof import('@vueuse/core')['createUnrefFn']>
@@ -366,6 +370,7 @@ declare module 'vue' {
     readonly decodeStr: UnwrapRef<typeof import('./src/composables/utils')['decodeStr']>
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
+    readonly deleteMapFeature: UnwrapRef<typeof import('./src/composables/api')['deleteMapFeature']>
     readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
     readonly drawPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPoint']>
     readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
@@ -463,6 +468,7 @@ declare module 'vue' {
     readonly unref: UnwrapRef<typeof import('vue')['unref']>
     readonly unrefElement: UnwrapRef<typeof import('@vueuse/core')['unrefElement']>
     readonly until: UnwrapRef<typeof import('@vueuse/core')['until']>
+    readonly updateMapFeature: UnwrapRef<typeof import('./src/composables/api')['updateMapFeature']>
     readonly useActiveElement: UnwrapRef<typeof import('@vueuse/core')['useActiveElement']>
     readonly useArrayEvery: UnwrapRef<typeof import('@vueuse/core')['useArrayEvery']>
     readonly useArrayFilter: UnwrapRef<typeof import('@vueuse/core')['useArrayFilter']>
