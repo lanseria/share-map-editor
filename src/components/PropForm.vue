@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { deleteMapFeature, updateMapFeature } from '~/composables'
 import { currentProperties } from '~/composables/store'
 const isShowForm = computed(() => {
   return currentProperties.value !== null
@@ -13,6 +14,7 @@ const handleUpdate = () => {
       ...currentProperties.value,
     }
     mapFeatures.value[featureIdx] = polygon
+    updateMapFeature(polygon)
   }
   else { console.warn('找不到该geojson') }
 
@@ -23,6 +25,7 @@ const handleUpdate = () => {
 const handleDelete = () => {
   //
   mapFeatures.value = mapFeatures.value.filter(item => item.properties!.id !== currentProperties.value.id)
+  deleteMapFeature(currentProperties.value.id)
   reloadSourceLayer()
   currentProperties.value = null
 }

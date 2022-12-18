@@ -11,6 +11,7 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import DrawLineString from '~/draw/linestring'
 
 import drawStyles from '~/draw/styles'
+import { queryMapFeatures } from '~/composables'
 
 // const keys = useMagicKeys()
 
@@ -54,6 +55,20 @@ onMounted(() => {
   map.addControl(new mapboxgl.NavigationControl())
   map.addControl(draw)
 
+  async function handleBounds() {
+    const bounds = window.map.getBounds()
+    // https://8000.vip.cpolar.top/api/
+    // http://127.0.0.1:8080/
+
+    const res = await queryMapFeatures(bounds)
+    mapFeatures.value = res.data
+  }
+
+  // 使用同一个方法可以掩盖上一次执行，不使用箭头函数
+  const debouncedFn = useDebounceFn(handleBounds, 1000)
+  map.on('zoomend', debouncedFn)
+  map.on('dragend', debouncedFn)
+  map.on('moveend', debouncedFn)
   map.on('load', () => {
     map!.resize()
     mapLoad()

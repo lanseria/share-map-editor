@@ -106,6 +106,7 @@ declare global {
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const provide: typeof import('vue')['provide']
   const pushFeatures: typeof import('./src/composables/store')['pushFeatures']
+  const queryMapFeatures: typeof import('./src/composables/api')['queryMapFeatures']
   const reactify: typeof import('@vueuse/core')['reactify']
   const reactifyObject: typeof import('@vueuse/core')['reactifyObject']
   const reactive: typeof import('vue')['reactive']
@@ -421,6 +422,7 @@ declare module 'vue' {
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>
     readonly provide: UnwrapRef<typeof import('vue')['provide']>
     readonly pushFeatures: UnwrapRef<typeof import('./src/composables/store')['pushFeatures']>
+    readonly queryMapFeatures: UnwrapRef<typeof import('./src/composables/api')['queryMapFeatures']>
     readonly reactify: UnwrapRef<typeof import('@vueuse/core')['reactify']>
     readonly reactifyObject: UnwrapRef<typeof import('@vueuse/core')['reactifyObject']>
     readonly reactive: UnwrapRef<typeof import('vue')['reactive']>

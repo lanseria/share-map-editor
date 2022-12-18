@@ -3,6 +3,7 @@ import type { Ref } from 'vue'
 import * as turf from '@turf/turf'
 import { nanoid } from 'nanoid'
 import { LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum } from './constant'
+import { createMapFeature } from './api'
 
 export type MyFeature = Feature<Polygon | Point | LineString>
 
@@ -18,6 +19,11 @@ export const currentProperties = ref(null) as Ref<any>
 export const handleCollapsed = () => {
   collapsed.value = !collapsed.value
 }
+
+watchDebounced(() => mapFeatures.value, () => {
+  console.warn('mapFeatures changed')
+  reloadSourceLayer()
+}, { debounce: 300, maxWait: 600 })
 
 watchDebounced(() => collapsed.value, () => {
   window.map.resize()
@@ -129,6 +135,7 @@ export const pushFeatures = (feature: Feature<Polygon | LineString | Point>) => 
   // TODO: filter type
 
   mapFeatures.value.push(feature)
+  createMapFeature(feature)
 
-  reloadSourceLayer()
+  // reloadSourceLayer()
 }
