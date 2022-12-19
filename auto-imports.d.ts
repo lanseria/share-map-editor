@@ -63,6 +63,7 @@ declare global {
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
   const handleCollapsed: typeof import('./src/composables/store')['handleCollapsed']
+  const handleCollapsedFalse: typeof import('./src/composables/store')['handleCollapsedFalse']
   const handleMapEdit: typeof import('./src/composables/store')['handleMapEdit']
   const handleMapExitEdit: typeof import('./src/composables/store')['handleMapExitEdit']
   const handleSetLineString: typeof import('./src/composables/store')['handleSetLineString']
@@ -382,6 +383,7 @@ declare module 'vue' {
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
     readonly handleCollapsed: UnwrapRef<typeof import('./src/composables/store')['handleCollapsed']>
+    readonly handleCollapsedFalse: UnwrapRef<typeof import('./src/composables/store')['handleCollapsedFalse']>
     readonly handleMapEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapEdit']>
     readonly handleMapExitEdit: UnwrapRef<typeof import('./src/composables/store')['handleMapExitEdit']>
     readonly handleSetLineString: UnwrapRef<typeof import('./src/composables/store')['handleSetLineString']>

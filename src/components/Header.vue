@@ -95,7 +95,7 @@ onMounted(() => {
             </a-dropdown>
           </ASpace>
         </div>
-        <div class="sm:hidden">
+        <div class="sm:hidden" @click="handleCollapsedFalse()">
           在PC编辑与添加
         </div>
       </div>

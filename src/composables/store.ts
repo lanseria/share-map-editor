@@ -7,7 +7,7 @@ import { createMapFeature } from './api'
 
 export type MyFeature = Feature<Polygon | Point | LineString>
 
-export const collapsed = useStorage('share-map-collapsed', false)
+export const collapsed = ref(false)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = useStorage('share-map-center', [122.11837, 30.02002])
@@ -18,6 +18,10 @@ export const currentProperties = ref(null) as Ref<any>
 
 export const handleCollapsed = () => {
   collapsed.value = !collapsed.value
+}
+
+export const handleCollapsedFalse = () => {
+  collapsed.value = false
 }
 
 watchDebounced(() => mapFeatures.value, () => {
