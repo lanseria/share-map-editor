@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Message } from '@arco-design/web-vue'
 import { deleteMapFeature, updateMapFeature } from '~/composables'
 import { currentProperties } from '~/composables/store'
 const isShowForm = computed(() => {
@@ -15,6 +16,7 @@ const handleUpdate = () => {
     }
     mapFeatures.value[featureIdx] = polygon
     updateMapFeature(polygon)
+    Message.success('更新成功')
   }
   else { console.warn('找不到该geojson') }
 

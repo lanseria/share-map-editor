@@ -11,7 +11,7 @@ export const collapsed = useStorage('share-map-collapsed', false)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = useStorage('share-map-center', [122.11837, 30.02002])
-export const mapStyle = useStorage('share-map-style', 'osm')
+export const mapStyle = useStorage('share-map-style', 'light')
 export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<MyFeature[]>
 
 export const currentProperties = ref(null) as Ref<any>
@@ -122,7 +122,7 @@ export const pushFeatures = (feature: Feature<Polygon | LineString | Point>) => 
     if (feature.geometry.type === 'Point') {
       map.flyTo({
         center: currentProperties.value.center as any,
-        zoom: 17,
+        zoom: 14,
       })
     }
     else {

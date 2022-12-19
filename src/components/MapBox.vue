@@ -3,6 +3,7 @@ import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
+import type { MyFeature } from '~/composables/store'
 import { mapStyle } from '~/composables/store'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -61,7 +62,10 @@ onMounted(() => {
     // http://127.0.0.1:8080/
 
     const res = await queryMapFeatures(bounds)
-    mapFeatures.value = res.data
+    const newData: MyFeature[] = res.data
+    const newDataIds = newData.map(m => m.id as string)
+    mapFeatures.value = mapFeatures.value.filter(m => !newDataIds.includes(m.id as string))
+    mapFeatures.value.push(...newData)
   }
 
   // 使用同一个方法可以掩盖上一次执行，不使用箭头函数
