@@ -20,8 +20,10 @@ const handleFeatureHoverLeave = (_e: any) => {
 }
 
 const handleFeatureClick = (e: any) => {
-  if (!isEdit.value)
+  if (!isEdit.value) {
+    handleFeatureHover(e)
     return
+  }
   // prevent this popup from opening when the original click was on a marker
   const el = e.originalEvent.target
   // console.log(e)
@@ -140,6 +142,7 @@ export const drawPoint = () => {
   })
 
   map.on('click', MAP_LAYER_POINT, handleFeatureClick)
+  map.on('touchend', MAP_LAYER_POINT, handleFeatureClick)
   map.on('mouseenter', MAP_LAYER_POINT, handleFeatureHover)
   map.on('mouseleave', MAP_LAYER_POINT, handleFeatureHoverLeave)
 }

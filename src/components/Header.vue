@@ -54,7 +54,7 @@ onMounted(() => {
     <div class="flex-grow flex justify-end">
       <div style="height: 42px" />
       <div class="flex items-center" style="font-size: 10px">
-        <ASpace class="pr-3">
+        <ASpace class="pr-3 lt-sm:hidden">
           <a-button v-if="isEdit" type="text" @click="handleMailto()">
             <template #icon>
               <icon-email />
@@ -68,7 +68,7 @@ onMounted(() => {
             <div>似乎有{{ decodeData.length }}条数据可以导入</div>
           </a-modal>
         </ASpace>
-        <div class="flex pl-3 border-l border-solid border-light-6 dark:border-gray-6 h-full items-center">
+        <div class="lt-sm:hidden flex pl-3 border-l border-solid border-light-6 dark:border-gray-6 h-full items-center">
           <ASpace>
             <a-button v-if="isEdit" type="text" @click="handleMapExitEdit">
               <template #icon>
@@ -94,6 +94,9 @@ onMounted(() => {
               </template>
             </a-dropdown>
           </ASpace>
+        </div>
+        <div class="sm:hidden">
+          在PC编辑与添加
         </div>
       </div>
     </div>
