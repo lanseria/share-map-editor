@@ -50,6 +50,10 @@ const handleOpen = async () => {
     operationShow.value = false
   }
 }
+const clearStorage = () => {
+  localStorage.clear()
+  location.reload()
+}
 </script>
 
 <template>
@@ -67,7 +71,7 @@ const handleOpen = async () => {
     <pre v-if="fileShow" class="absolute left-10px top-55px rounded-20px p-5 z-10 bg-white dark:bg-dark" lang="yaml">{{ str }}</pre>
   </Transition>
 
-  <ASpace class="absolute left-10px top-10px z-100">
+  <ASpace class="absolute left-10px top-10px z-100 bg-white dark:bg-dark">
     <AButton @click="toggle">
       <template #icon>
         <icon-eye v-if="!operationShow" />
@@ -88,6 +92,10 @@ const handleOpen = async () => {
       </template>
       处理中
     </a-button>
+
+    <AButton @click="clearStorage">
+      清空重置
+    </AButton>
   </ASpace>
 </template>
 
