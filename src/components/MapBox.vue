@@ -18,7 +18,7 @@ import { INIt_ZOOM } from '~/composables'
 // const keys = useMagicKeys()
 
 mapboxgl.accessToken
-  = 'pk.eyJ1IjoibGFuc2VyaWEiLCJhIjoiY2wxMGo5ZWk3MTF3dTNkcnRwcDMyMXowOSJ9.kxLDvTThtaU0uiBOXanNvA'
+  = 'pk.eyJ1IjoieHVlemh1aHVuIiwiYSI6ImNrNzl2cDZkcjB4aGQzbG10bGNkN3RpZG8ifQ.ewRp9bPxonpHPnpSzWdi2g'
 
 let map: mapboxgl.Map | null = null
 const mapContainer = shallowRef()
@@ -91,12 +91,6 @@ onMounted(() => {
       <div v-if="collapsed" class="i-carbon:caret-right" />
       <div v-else class="i-carbon:caret-left" />
     </div>
-    <div class="absolute left-0 top-0 bg-white dark:bg-dark px-3 py-1 z-10 lt-sm:max-w-300px">
-      <MapLayer />
-      <a-divider />
-      <MapSearch />
-      <a-divider />
-      <MapResult />
-    </div>
+    <Operation />
   </div>
 </template>

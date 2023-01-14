@@ -36,32 +36,50 @@ export enum PolygonTypeEnum {
 export const PolygonTypeEnumMap = {
   [PolygonTypeEnum.面]: '面',
 }
-const MapBoxStylePrefix = 'mapbox://styles/mapbox/'
+// const MapBoxStylePrefix = 'mapbox://styles/mapbox/'
+const MapBoxStylePrefix = 'mapbox://styles/xuezhuhun/'
+// export const LayerStyleList = [
+//   {
+//     name: 'satellite streets',
+//     value: 'satellite',
+//     style: `${MapBoxStylePrefix}satellite-streets-v12`,
+//   },
+//   {
+//     name: 'light',
+//     value: 'light',
+//     style: `${MapBoxStylePrefix}light-v11`,
+//   },
+//   {
+//     name: 'dark',
+//     value: 'dark',
+//     style: `${MapBoxStylePrefix}dark-v11`,
+//   },
+//   {
+//     name: 'streets',
+//     value: 'streets',
+//     style: `${MapBoxStylePrefix}streets-v12`,
+//   },
+//   {
+//     name: 'outdoors',
+//     value: 'outdoors',
+//     style: `${MapBoxStylePrefix}outdoors-v12`,
+//   },
+// ]
 export const LayerStyleList = [
   {
-    name: 'satellite streets',
+    name: '样式1',
     value: 'satellite',
-    style: `${MapBoxStylePrefix}satellite-streets-v12`,
+    style: `${MapBoxStylePrefix}cl8figjhr000114pdi6ssaay9`,
   },
   {
-    name: 'light',
+    name: '样式2',
     value: 'light',
-    style: `${MapBoxStylePrefix}light-v11`,
+    style: `${MapBoxStylePrefix}cl8fifwmc001z14qilganef03`,
   },
   {
-    name: 'dark',
+    name: '样式3',
     value: 'dark',
-    style: `${MapBoxStylePrefix}dark-v11`,
-  },
-  {
-    name: 'streets',
-    value: 'streets',
-    style: `${MapBoxStylePrefix}streets-v12`,
-  },
-  {
-    name: 'outdoors',
-    value: 'outdoors',
-    style: `${MapBoxStylePrefix}outdoors-v12`,
+    style: `${MapBoxStylePrefix}cl7obude3001y15npbnat955g`,
   },
 ]
 

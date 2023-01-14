@@ -13,6 +13,7 @@ declare module '@vue/runtime-core' {
     MapLayer: typeof import('./src/components/MapLayer.vue')['default']
     MapResult: typeof import('./src/components/MapResult.vue')['default']
     MapSearch: typeof import('./src/components/MapSearch.vue')['default']
+    Operation: typeof import('./src/components/Operation.vue')['default']
     PropForm: typeof import('./src/components/PropForm.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

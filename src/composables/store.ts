@@ -10,6 +10,7 @@ import { reloadCityLayer } from './mapLayer'
 export type MyFeature = Feature<Polygon | Point | LineString>
 
 export const collapsed = ref(false)
+export const operationShow = ref(true)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = ref(INIt_POINT)
@@ -68,15 +69,20 @@ export const locationType = computed(() => {
 })
 
 export const filterCityList = computed(() => {
-  return CleanDataList.filter((item) => {
-    return inRange(mapSearchForm.value.year, +item.year[0], +item.year[1])
-  }).filter((item) => {
-    const types = mapSearchForm.value.filter.map((it) => {
-      return it.split('/')
+  return CleanDataList
+    .filter((item) => {
+      return inRange(mapSearchForm.value.year, +item.year[0], +item.year[1])
     })
-    const flattenTypes = flatten(types)
-    return !flattenTypes.some(k => item.name.endsWith(k))
-  })
+    .filter((item) => {
+      const types = mapSearchForm.value.filter.map((it) => {
+        return it.split('/')
+      })
+      const flattenTypes = flatten(types)
+      return !flattenTypes.some(k => item.name.endsWith(k))
+    })
+    .filter((item) => {
+      return item.name.match(mapSearchForm.value.locationName)
+    })
 })
 
 export const currentProperties = ref(null) as Ref<any>
