@@ -19,7 +19,7 @@ export const mapCenter = ref(INIt_POINT)
 export const mapStyle = useStorage('share-map-style', 'satellite')
 export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<MyFeature[]>
 
-export const mapCityFeatures = useStorage('share-map-city-features', []) as Ref<CleanDataItem[]>
+export const mapCityFeatures = ref([]) as Ref<CleanDataItem[]>
 
 export const mapSearchForm = useStorage('share-map-search-form', {
   locationName: '',
@@ -73,26 +73,40 @@ export const locationType = computed(() => {
   return locationTypeMap[dynastyType.value as keyof typeof locationTypeMap]
 })
 
-export const filterCityList = computed(() => {
-  const processDataList = mapCityFeatures.value.length === 0 ? CleanDataList : mapCityFeatures.value
-  if (mapSearchForm.value.isAllYear)
-    return processDataList
+export const filterCityList = ref<CleanDataItem[]>([])
 
-  return processDataList
-    .filter((item) => {
-      return inRange(mapSearchForm.value.year, item.year[0], item.year[1])
-    })
-    .filter((item) => {
-      const types = mapSearchForm.value.filter.map((it) => {
-        return it.split('/')
+const processDataFunc = () => {
+  const processDataList = mapCityFeatures.value.length === 0 ? CleanDataList : mapCityFeatures.value
+  console.log(processDataList, mapSearchForm.value.isAllYear)
+  if (mapSearchForm.value.isAllYear) {
+    filterCityList.value = processDataList
+  }
+  else {
+    filterCityList.value = processDataList
+      .filter((item) => {
+        return inRange(mapSearchForm.value.year, item.year[0], item.year[1])
       })
-      const flattenTypes = flatten(types)
-      return !flattenTypes.some(k => item.name.endsWith(k))
-    })
-    .filter((item) => {
-      return item.name.match(mapSearchForm.value.locationName)
-    })
-})
+      .filter((item) => {
+        const types = mapSearchForm.value.filter.map((it) => {
+          return it.split('/')
+        })
+        const flattenTypes = flatten(types)
+        return !flattenTypes.some(k => item.name.endsWith(k))
+      })
+      .filter((item) => {
+        return item.name.match(mapSearchForm.value.locationName)
+      })
+  }
+}
+
+// 大数据延迟处理
+watchDebounced([
+  () => mapCityFeatures.value,
+  () => mapSearchForm.value,
+], () => {
+  console.log('处理中')
+  processDataFunc()
+}, { debounce: 300, maxWait: 600, immediate: true })
 
 export const currentProperties = ref(null) as Ref<any>
 

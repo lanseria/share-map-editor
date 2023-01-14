@@ -25,8 +25,19 @@ const onBack = () => {
         返回
       </a-button>
     </a-typography-text>
-    <a-scrollbar type="track" class="h-300px overflow-y-scroll">
-      <div v-for="item in filterCityList" :key="item.id" class="px-6 py-2 bg-light-500 hover:bg-light-800 cursor-pointer flex items-center mb-1 rounded" @click="onClick(item)">
+    <AList
+      :virtual-list-props="{
+        height: 300,
+      }"
+      :data="filterCityList"
+    >
+      <template #item="{ item, index }">
+        <AListItem :key="index">
+          {{ item.name }}
+        </AListItem>
+      </template>
+    </AList>
+    <!-- <div v-for="item in filterCityList" :key="item.id" class="px-6 py-2 bg-light-500 hover:bg-light-800 cursor-pointer flex items-center mb-1 rounded" @click="onClick(item)">
         <a-badge status="warning" class="mr-10px" />
         <div class="text-size-15px">
           {{ item.name }}
@@ -34,7 +45,6 @@ const onBack = () => {
         <ATag color="red">
           {{ item.time }}
         </ATag>
-      </div>
-    </a-scrollbar>
+      </div> -->
   </div>
 </template>

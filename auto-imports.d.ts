@@ -35,6 +35,7 @@ declare global {
   const addSource: typeof import('./src/composables/mapLayer')['addSource']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
+  const cleanCity: typeof import('./src/composables/utils')['cleanCity']
   const collapsed: typeof import('./src/composables/store')['collapsed']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
@@ -68,6 +69,7 @@ declare global {
   const effectScope: typeof import('vue')['effectScope']
   const encodeStr: typeof import('./src/composables/utils')['encodeStr']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const fileShow: typeof import('./src/composables/store')['fileShow']
   const filterCityList: typeof import('./src/composables/store')['filterCityList']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
@@ -91,6 +93,7 @@ declare global {
   const locationType: typeof import('./src/composables/store')['locationType']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
+  const mapCityFeatures: typeof import('./src/composables/store')['mapCityFeatures']
   const mapFeatures: typeof import('./src/composables/store')['mapFeatures']
   const mapLoad: typeof import('./src/composables/mapLoad')['mapLoad']
   const mapSearchForm: typeof import('./src/composables/store')['mapSearchForm']
@@ -370,6 +373,7 @@ declare module 'vue' {
     readonly addSource: UnwrapRef<typeof import('./src/composables/mapLayer')['addSource']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
+    readonly cleanCity: UnwrapRef<typeof import('./src/composables/utils')['cleanCity']>
     readonly collapsed: UnwrapRef<typeof import('./src/composables/store')['collapsed']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
@@ -403,6 +407,7 @@ declare module 'vue' {
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly encodeStr: UnwrapRef<typeof import('./src/composables/utils')['encodeStr']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly fileShow: UnwrapRef<typeof import('./src/composables/store')['fileShow']>
     readonly filterCityList: UnwrapRef<typeof import('./src/composables/store')['filterCityList']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
@@ -426,6 +431,7 @@ declare module 'vue' {
     readonly locationType: UnwrapRef<typeof import('./src/composables/store')['locationType']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
+    readonly mapCityFeatures: UnwrapRef<typeof import('./src/composables/store')['mapCityFeatures']>
     readonly mapFeatures: UnwrapRef<typeof import('./src/composables/store')['mapFeatures']>
     readonly mapLoad: UnwrapRef<typeof import('./src/composables/mapLoad')['mapLoad']>
     readonly mapSearchForm: UnwrapRef<typeof import('./src/composables/store')['mapSearchForm']>
