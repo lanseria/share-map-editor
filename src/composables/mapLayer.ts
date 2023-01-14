@@ -1,5 +1,6 @@
 import * as turf from '@turf/turf'
 import mapboxgl from 'mapbox-gl'
+import { MAP_CITY_LAYER_POINT, MAP_CITY_SOURCE } from './constant'
 const popup = new mapboxgl.Popup({
   anchor: 'bottom-left',
   closeButton: false,
@@ -152,4 +153,60 @@ export const reloadSourceLayer = () => {
   drawPolygon()
   drawLine()
   drawPoint()
+}
+
+export const addCitySource = () => {
+  const map = window.map
+  const source: any = map.getSource(MAP_CITY_SOURCE)
+  const cityMapFeatures = filterCityList.value.map((item) => {
+    return turf.point(item.position, {
+      name: item.name,
+    })
+  })
+  if (source) {
+    source.setData(
+      turf.featureCollection(cityMapFeatures),
+    )
+  }
+  else {
+    map.addSource(MAP_CITY_SOURCE, {
+      type: 'geojson',
+      data: turf.featureCollection(cityMapFeatures),
+    })
+  }
+}
+
+export const drawCityPoint = () => {
+  const map = window.map
+  const source: any = map.getSource(MAP_CITY_SOURCE)
+  if (!source)
+    return
+  if (map.getLayer(MAP_CITY_LAYER_POINT))
+    map.removeLayer(MAP_CITY_LAYER_POINT)
+  map.addLayer({
+    id: MAP_CITY_LAYER_POINT,
+    type: 'symbol',
+    source: MAP_CITY_SOURCE,
+    layout: {
+      'text-field': ['get', 'name'],
+      'icon-size': 0.25,
+      'icon-image': '#F3AE1A',
+      'text-size': 12,
+      'text-offset': [0, 0.5],
+      'text-anchor': 'top',
+      'icon-allow-overlap': true,
+    },
+    paint: {
+      'text-color': isDark.value ? '#bbb' : '#7e6c56',
+      'text-halo-color': isDark.value ? '#000' : '#fff',
+      'text-halo-width': 1,
+      'text-halo-blur': 0,
+    },
+    filter: ['==', ['geometry-type'], 'Point'],
+  })
+}
+
+export const reloadCityLayer = () => {
+  addCitySource()
+  drawCityPoint()
 }

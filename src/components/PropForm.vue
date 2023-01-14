@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { deleteMapFeature, updateMapFeature } from '~/composables'
+// import { deleteMapFeature, updateMapFeature } from '~/composables'
+import { Message } from '@arco-design/web-vue'
 import { currentProperties } from '~/composables/store'
 const isShowForm = computed(() => {
   return currentProperties.value !== null
@@ -14,22 +15,24 @@ const handleUpdate = () => {
       ...currentProperties.value,
     }
     mapFeatures.value[featureIdx] = polygon
-    updateMapFeature(polygon)
+    // updateMapFeature(polygon)
     // Message
-    getCurrentInstance()!.appContext.config.globalProperties.$message.success('更新成功')
+    Message.success('更新成功')
   }
   else { console.warn('找不到该geojson') }
 
   reloadSourceLayer()
   // console.log(currentProperties.value)
+  Message.success('已更新')
 }
 
 const handleDelete = () => {
   //
   mapFeatures.value = mapFeatures.value.filter(item => item.properties!.id !== currentProperties.value.id)
-  deleteMapFeature(currentProperties.value.id)
+  // deleteMapFeature(currentProperties.value.id)
   reloadSourceLayer()
   currentProperties.value = null
+  Message.success('已删除')
 }
 </script>
 

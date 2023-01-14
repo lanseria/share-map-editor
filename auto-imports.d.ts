@@ -8,6 +8,8 @@ declare global {
   const $ref: typeof import('vue/macros')['$ref']
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
+  const CleanDataList: typeof import('./src/composables/constant')['CleanDataList']
+  const DataList: typeof import('./src/composables/constant')['DataList']
   const EffectScope: typeof import('vue')['EffectScope']
   const IV: typeof import('./src/composables/constant')['IV']
   const LayerStyleList: typeof import('./src/composables/constant')['LayerStyleList']
@@ -55,10 +57,12 @@ declare global {
   const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
   const drawPoint: typeof import('./src/composables/mapLayer')['drawPoint']
   const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
+  const dynastyType: typeof import('./src/composables/store')['dynastyType']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const encodeStr: typeof import('./src/composables/utils')['encodeStr']
   const extendRef: typeof import('@vueuse/core')['extendRef']
+  const filterCityList: typeof import('./src/composables/store')['filterCityList']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -78,10 +82,12 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const locationType: typeof import('./src/composables/store')['locationType']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
   const mapFeatures: typeof import('./src/composables/store')['mapFeatures']
   const mapLoad: typeof import('./src/composables/mapLoad')['mapLoad']
+  const mapSearchForm: typeof import('./src/composables/store')['mapSearchForm']
   const mapStyle: typeof import('./src/composables/store')['mapStyle']
   const markRaw: typeof import('vue')['markRaw']
   const nextTick: typeof import('vue')['nextTick']
@@ -160,6 +166,7 @@ declare global {
   const useArrayMap: typeof import('@vueuse/core')['useArrayMap']
   const useArrayReduce: typeof import('@vueuse/core')['useArrayReduce']
   const useArraySome: typeof import('@vueuse/core')['useArraySome']
+  const useArrayUnique: typeof import('@vueuse/core')['useArrayUnique']
   const useAsyncQueue: typeof import('@vueuse/core')['useAsyncQueue']
   const useAsyncState: typeof import('@vueuse/core')['useAsyncState']
   const useAttrs: typeof import('vue')['useAttrs']
@@ -328,6 +335,8 @@ declare module 'vue' {
     readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
+    readonly CleanDataList: UnwrapRef<typeof import('./src/composables/constant')['CleanDataList']>
+    readonly DataList: UnwrapRef<typeof import('./src/composables/constant')['DataList']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
     readonly IV: UnwrapRef<typeof import('./src/composables/constant')['IV']>
     readonly LayerStyleList: UnwrapRef<typeof import('./src/composables/constant')['LayerStyleList']>
@@ -375,10 +384,12 @@ declare module 'vue' {
     readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
     readonly drawPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPoint']>
     readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
+    readonly dynastyType: UnwrapRef<typeof import('./src/composables/store')['dynastyType']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly encodeStr: UnwrapRef<typeof import('./src/composables/utils')['encodeStr']>
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
+    readonly filterCityList: UnwrapRef<typeof import('./src/composables/store')['filterCityList']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>
@@ -398,10 +409,12 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly locationType: UnwrapRef<typeof import('./src/composables/store')['locationType']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
     readonly mapFeatures: UnwrapRef<typeof import('./src/composables/store')['mapFeatures']>
     readonly mapLoad: UnwrapRef<typeof import('./src/composables/mapLoad')['mapLoad']>
+    readonly mapSearchForm: UnwrapRef<typeof import('./src/composables/store')['mapSearchForm']>
     readonly mapStyle: UnwrapRef<typeof import('./src/composables/store')['mapStyle']>
     readonly markRaw: UnwrapRef<typeof import('vue')['markRaw']>
     readonly nextTick: UnwrapRef<typeof import('vue')['nextTick']>
@@ -480,6 +493,7 @@ declare module 'vue' {
     readonly useArrayMap: UnwrapRef<typeof import('@vueuse/core')['useArrayMap']>
     readonly useArrayReduce: UnwrapRef<typeof import('@vueuse/core')['useArrayReduce']>
     readonly useArraySome: UnwrapRef<typeof import('@vueuse/core')['useArraySome']>
+    readonly useArrayUnique: UnwrapRef<typeof import('@vueuse/core')['useArrayUnique']>
     readonly useAsyncQueue: UnwrapRef<typeof import('@vueuse/core')['useAsyncQueue']>
     readonly useAsyncState: UnwrapRef<typeof import('@vueuse/core')['useAsyncState']>
     readonly useAttrs: UnwrapRef<typeof import('vue')['useAttrs']>

@@ -3,7 +3,7 @@ import type { LngLatLike } from 'mapbox-gl'
 import mapboxgl from 'mapbox-gl'
 import MapboxDraw from '@mapbox/mapbox-gl-draw'
 import MapboxLanguage from '@mapbox/mapbox-gl-language'
-import type { MyFeature } from '~/composables/store'
+// import type { MyFeature } from '~/composables/store'
 import { mapStyle } from '~/composables/store'
 
 import 'mapbox-gl/dist/mapbox-gl.css'
@@ -12,7 +12,8 @@ import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css'
 import DrawLineString from '~/draw/linestring'
 
 import drawStyles from '~/draw/styles'
-import { queryMapFeatures } from '~/composables'
+import { INIt_ZOOM } from '~/composables'
+// import { queryMapFeatures } from '~/composables'
 
 // const keys = useMagicKeys()
 
@@ -31,10 +32,9 @@ onMounted(() => {
   map = new mapboxgl.Map({
     container: mapContainer.value,
     style: styleValue?.style,
-    // style: 'mapbox://styles/mapbox/outdoors-v12',
     center: mapCenter.value as LngLatLike,
-    zoom: 15,
-    preserveDrawingBuffer: true,
+    zoom: INIt_ZOOM,
+    preserveDrawingBuffer: false,
     hash: true,
   })
   // map.scrollZoom.setWheelZoomRate(1)
@@ -56,23 +56,20 @@ onMounted(() => {
   map.addControl(new mapboxgl.NavigationControl())
   map.addControl(draw)
 
-  async function handleBounds() {
-    const bounds = window.map.getBounds()
-    // https://8000.vip.cpolar.top/api/
-    // http://127.0.0.1:8080/
-
-    const res = await queryMapFeatures(bounds)
-    const newData: MyFeature[] = res.data
-    const newDataIds = newData.map(m => m.id as string)
-    mapFeatures.value = mapFeatures.value.filter(m => !newDataIds.includes(m.id as string))
-    mapFeatures.value.push(...newData)
-  }
+  // async function handleBounds() {
+  //   const bounds = window.map.getBounds()
+  //   const res = await queryMapFeatures(bounds)
+  //   const newData: MyFeature[] = res.data
+  //   const newDataIds = newData.map(m => m.id as string)
+  //   mapFeatures.value = mapFeatures.value.filter(m => !newDataIds.includes(m.id as string))
+  //   mapFeatures.value.push(...newData)
+  // }
 
   // 使用同一个方法可以掩盖上一次执行，不使用箭头函数
-  const debouncedFn = useDebounceFn(handleBounds, 1000)
-  map.on('zoomend', debouncedFn)
-  map.on('dragend', debouncedFn)
-  map.on('moveend', debouncedFn)
+  // const debouncedFn = useDebounceFn(handleBounds, 1000)
+  // map.on('zoomend', debouncedFn)
+  // map.on('dragend', debouncedFn)
+  // map.on('moveend', debouncedFn)
   map.on('load', () => {
     map!.resize()
     mapLoad()
@@ -94,13 +91,12 @@ onMounted(() => {
       <div v-if="collapsed" class="i-carbon:caret-right" />
       <div v-else class="i-carbon:caret-left" />
     </div>
-    <div class="absolute left-0 top-0 bg-light dark:bg-dark flex items-center px-3 py-1 z-10 lt-sm:max-w-300px">
-      <div>图层：</div>
-      <a-radio-group v-model="mapStyle">
-        <a-radio v-for="item in LayerStyleList" :key="item.value" :value="item.value">
-          {{ item.name }}
-        </a-radio>
-      </a-radio-group>
+    <div class="absolute left-0 top-0 bg-white dark:bg-dark px-3 py-1 z-10 lt-sm:max-w-300px">
+      <MapLayer />
+      <a-divider />
+      <MapSearch />
+      <a-divider />
+      <MapResult />
     </div>
   </div>
 </template>
