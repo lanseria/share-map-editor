@@ -1,4 +1,6 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { mapStyle } from '~/composables'
+</script>
 
 <template>
   <div class="flex items-center">

@@ -11,10 +11,14 @@ declare global {
   const CleanDataList: typeof import('./src/composables/constant')['CleanDataList']
   const DataList: typeof import('./src/composables/constant')['DataList']
   const EffectScope: typeof import('vue')['EffectScope']
+  const INIt_POINT: typeof import('./src/composables/constant')['INIt_POINT']
+  const INIt_ZOOM: typeof import('./src/composables/constant')['INIt_ZOOM']
   const IV: typeof import('./src/composables/constant')['IV']
   const LayerStyleList: typeof import('./src/composables/constant')['LayerStyleList']
   const LineStringTypeEnum: typeof import('./src/composables/constant')['LineStringTypeEnum']
   const LineStringTypeEnumMap: typeof import('./src/composables/constant')['LineStringTypeEnumMap']
+  const MAP_CITY_LAYER_POINT: typeof import('./src/composables/constant')['MAP_CITY_LAYER_POINT']
+  const MAP_CITY_SOURCE: typeof import('./src/composables/constant')['MAP_CITY_SOURCE']
   const MAP_LAYER_POINT: typeof import('./src/composables/constant')['MAP_LAYER_POINT']
   const MAP_LAYER_POLYGON: typeof import('./src/composables/constant')['MAP_LAYER_POLYGON']
   const MAP_LAYER_POLYGON_FILL: typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_FILL']
@@ -27,6 +31,7 @@ declare global {
   const PolygonTypeEnumMap: typeof import('./src/composables/constant')['PolygonTypeEnumMap']
   const WordArray: typeof import('./src/composables/constant')['WordArray']
   const activeTab: typeof import('./src/composables/store')['activeTab']
+  const addCitySource: typeof import('./src/composables/mapLayer')['addCitySource']
   const addSource: typeof import('./src/composables/mapLayer')['addSource']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
@@ -54,6 +59,7 @@ declare global {
   const defineAsyncComponent: typeof import('vue')['defineAsyncComponent']
   const defineComponent: typeof import('vue')['defineComponent']
   const deleteMapFeature: typeof import('./src/composables/api')['deleteMapFeature']
+  const drawCityPoint: typeof import('./src/composables/mapLayer')['drawCityPoint']
   const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
   const drawPoint: typeof import('./src/composables/mapLayer')['drawPoint']
   const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
@@ -129,6 +135,7 @@ declare global {
   const refDefault: typeof import('@vueuse/core')['refDefault']
   const refThrottled: typeof import('@vueuse/core')['refThrottled']
   const refWithControl: typeof import('@vueuse/core')['refWithControl']
+  const reloadCityLayer: typeof import('./src/composables/mapLayer')['reloadCityLayer']
   const reloadSourceLayer: typeof import('./src/composables/mapLayer')['reloadSourceLayer']
   const resolveComponent: typeof import('vue')['resolveComponent']
   const resolveDirective: typeof import('vue')['resolveDirective']
@@ -338,10 +345,14 @@ declare module 'vue' {
     readonly CleanDataList: UnwrapRef<typeof import('./src/composables/constant')['CleanDataList']>
     readonly DataList: UnwrapRef<typeof import('./src/composables/constant')['DataList']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly INIt_POINT: UnwrapRef<typeof import('./src/composables/constant')['INIt_POINT']>
+    readonly INIt_ZOOM: UnwrapRef<typeof import('./src/composables/constant')['INIt_ZOOM']>
     readonly IV: UnwrapRef<typeof import('./src/composables/constant')['IV']>
     readonly LayerStyleList: UnwrapRef<typeof import('./src/composables/constant')['LayerStyleList']>
     readonly LineStringTypeEnum: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnum']>
     readonly LineStringTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['LineStringTypeEnumMap']>
+    readonly MAP_CITY_LAYER_POINT: UnwrapRef<typeof import('./src/composables/constant')['MAP_CITY_LAYER_POINT']>
+    readonly MAP_CITY_SOURCE: UnwrapRef<typeof import('./src/composables/constant')['MAP_CITY_SOURCE']>
     readonly MAP_LAYER_POINT: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POINT']>
     readonly MAP_LAYER_POLYGON: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POLYGON']>
     readonly MAP_LAYER_POLYGON_FILL: UnwrapRef<typeof import('./src/composables/constant')['MAP_LAYER_POLYGON_FILL']>
@@ -354,6 +365,7 @@ declare module 'vue' {
     readonly PolygonTypeEnumMap: UnwrapRef<typeof import('./src/composables/constant')['PolygonTypeEnumMap']>
     readonly WordArray: UnwrapRef<typeof import('./src/composables/constant')['WordArray']>
     readonly activeTab: UnwrapRef<typeof import('./src/composables/store')['activeTab']>
+    readonly addCitySource: UnwrapRef<typeof import('./src/composables/mapLayer')['addCitySource']>
     readonly addSource: UnwrapRef<typeof import('./src/composables/mapLayer')['addSource']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
@@ -381,6 +393,7 @@ declare module 'vue' {
     readonly defineAsyncComponent: UnwrapRef<typeof import('vue')['defineAsyncComponent']>
     readonly defineComponent: UnwrapRef<typeof import('vue')['defineComponent']>
     readonly deleteMapFeature: UnwrapRef<typeof import('./src/composables/api')['deleteMapFeature']>
+    readonly drawCityPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawCityPoint']>
     readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
     readonly drawPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPoint']>
     readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
@@ -456,6 +469,7 @@ declare module 'vue' {
     readonly refDefault: UnwrapRef<typeof import('@vueuse/core')['refDefault']>
     readonly refThrottled: UnwrapRef<typeof import('@vueuse/core')['refThrottled']>
     readonly refWithControl: UnwrapRef<typeof import('@vueuse/core')['refWithControl']>
+    readonly reloadCityLayer: UnwrapRef<typeof import('./src/composables/mapLayer')['reloadCityLayer']>
     readonly reloadSourceLayer: UnwrapRef<typeof import('./src/composables/mapLayer')['reloadSourceLayer']>
     readonly resolveComponent: UnwrapRef<typeof import('vue')['resolveComponent']>
     readonly resolveDirective: UnwrapRef<typeof import('vue')['resolveDirective']>
