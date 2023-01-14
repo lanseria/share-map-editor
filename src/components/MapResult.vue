@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import type { CleanDataItem } from '~/composables'
 import { INIt_POINT, INIt_ZOOM } from '~/composables'
 
-const onClick = (item: any) => {
+const onClick = (item: CleanDataItem) => {
   const map = window.map
   console.warn(item)
   map.flyTo({
@@ -33,7 +34,9 @@ const onBack = () => {
     >
       <template #item="{ item, index }">
         <AListItem :key="index">
-          {{ item.name }}
+          <div class="cursor-pointer" @click="onClick(item)">
+            {{ item.name }}
+          </div>
         </AListItem>
       </template>
     </AList>

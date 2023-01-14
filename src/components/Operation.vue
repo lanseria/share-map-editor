@@ -48,6 +48,9 @@ const handleOpen = async () => {
     fileShow.value = true
     mapCityFeatures.value = cleanCity(toJsonData)
     operationShow.value = false
+    setTimeout(() => {
+      toggle()
+    }, 500)
   }
 }
 const clearStorage = () => {
