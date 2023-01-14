@@ -1,3 +1,5 @@
+import { cleanCity } from './utils'
+
 export const MAP_SOURCE = 'MapSource'
 export const MAP_LAYER_POLYGON = 'MapLayerPolygon'
 export const MAP_LAYER_POLYGON_FILL = `${MAP_LAYER_POLYGON}Fill`
@@ -114,13 +116,4 @@ export const DataList = [
   },
 ]
 
-export const CleanDataList = DataList.map((item) => {
-  return {
-    id: item.id,
-    name: item.name,
-    type: item.type,
-    time: item.time,
-    year: item.time.split('-'),
-    position: JSON.parse(item.position),
-  }
-})
+export const CleanDataList = cleanCity(DataList)

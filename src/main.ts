@@ -5,10 +5,10 @@ import ArcoVue from '@arco-design/web-vue'
 import ArcoVueIcon from '@arco-design/web-vue/es/icon'
 import App from './App.vue'
 
-import '@arco-design/web-vue/dist/arco.css'
 import '@unocss/reset/tailwind.css'
-import './styles/main.css'
 import 'uno.css'
+import './styles/main.css'
+import '@arco-design/web-vue/dist/arco.css'
 
 const app = createApp(App)
 const router = createRouter({

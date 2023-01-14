@@ -5,22 +5,27 @@ import * as turf from '@turf/turf'
 import { nanoid } from 'nanoid'
 import { CleanDataList, INIt_POINT, LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum } from './constant'
 import { reloadCityLayer } from './mapLayer'
+import type { CleanDataItem } from './utils'
 // import { createMapFeature } from './api'
 
 export type MyFeature = Feature<Polygon | Point | LineString>
 
 export const collapsed = ref(false)
 export const operationShow = ref(true)
+export const fileShow = ref(false)
 export const isEdit = useStorage('share-map-isEdit', false)
 export const activeTab = useStorage('share-map-activeTab', 'edit')
 export const mapCenter = ref(INIt_POINT)
 export const mapStyle = useStorage('share-map-style', 'satellite')
 export const mapFeatures = useStorage('share-map-draw-features', []) as Ref<MyFeature[]>
 
+export const mapCityFeatures = useStorage('share-map-city-features', []) as Ref<CleanDataItem[]>
+
 export const mapSearchForm = useStorage('share-map-search-form', {
   locationName: '',
   year: 382,
   filter: [] as string[],
+  isAllYear: false,
 })
 
 export const dynastyType = computed(() => {
@@ -69,9 +74,13 @@ export const locationType = computed(() => {
 })
 
 export const filterCityList = computed(() => {
-  return CleanDataList
+  const processDataList = mapCityFeatures.value.length === 0 ? CleanDataList : mapCityFeatures.value
+  if (mapSearchForm.value.isAllYear)
+    return processDataList
+
+  return processDataList
     .filter((item) => {
-      return inRange(mapSearchForm.value.year, +item.year[0], +item.year[1])
+      return inRange(mapSearchForm.value.year, item.year[0], item.year[1])
     })
     .filter((item) => {
       const types = mapSearchForm.value.filter.map((it) => {

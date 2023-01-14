@@ -45,5 +45,9 @@ const handleSubmit = () => {
         </a-checkbox>
       </a-checkbox-group>
     </AFormItem>
+
+    <AFormItem label="展示全部" tooltip="忽略所有字段">
+      <ASwitch v-model="mapSearchForm.isAllYear" />
+    </AFormItem>
   </a-form>
 </template>

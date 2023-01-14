@@ -1,10 +1,46 @@
 <script lang="ts" setup>
-import { operationShow } from '~/composables'
+import { cleanCity, fileShow, mapCityFeatures, operationShow } from '~/composables'
+
+const toggle = () => {
+  operationShow.value = !operationShow.value
+  fileShow.value = false
+}
+const { open, isSupported, file, fileName, fileMIME, fileSize, fileLastModified, data } = useFileSystemAccess({
+  dataType: 'Text',
+  types: [
+    {
+      description: 'text',
+      accept: {
+        'text/plain': ['.txt', '.html'],
+      },
+    },
+  ],
+  excludeAcceptAllOption: true,
+})
+const str = JSON.stringify(reactive({
+  isSupported,
+  file,
+  fileName,
+  fileMIME,
+  fileSize,
+  fileLastModified,
+}))
+
+const handleOpen = async () => {
+  await open()
+  const jsonText = `[${data.value}]`
+  const replaceQua = jsonText.replace(/\'/g, '\"')
+  const toJsonData = JSON.parse(replaceQua)
+  console.warn(toJsonData)
+  fileShow.value = true
+  mapCityFeatures.value = cleanCity(toJsonData)
+  operationShow.value = false
+}
 </script>
 
 <template>
   <Transition>
-    <div v-if="operationShow" class="absolute left-10px top-55px rounded bg-white dark:bg-dark px-3 py-1 z-10 lt-sm:max-w-300px">
+    <div v-if="operationShow" class="absolute left-10px top-55px rounded-20px p-5 z-10 bg-white dark:bg-dark lt-sm:max-w-300px">
       <MapLayer />
       <a-divider />
       <MapSearch />
@@ -12,15 +48,26 @@ import { operationShow } from '~/composables'
       <MapResult />
     </div>
   </Transition>
-  <div class="absolute left-10px top-10px z-100">
-    <AButton @click="operationShow = !operationShow">
+
+  <Transition>
+    <pre v-if="fileShow" class="absolute left-10px top-55px rounded-20px p-5 z-10 bg-white dark:bg-dark" lang="yaml">{{ str }}</pre>
+  </Transition>
+
+  <ASpace class="absolute left-10px top-10px z-100">
+    <AButton @click="toggle">
       <template #icon>
         <icon-eye v-if="!operationShow" />
         <icon-eye-invisible v-else />
       </template>
       {{ operationShow ? '隐藏' : '显示' }}
     </AButton>
-  </div>
+    <a-button type="dashed" @click="handleOpen()">
+      <template #icon>
+        <icon-upload />
+      </template>
+      导入并替换数据
+    </a-button>
+  </ASpace>
 </template>
 
 <style lang="css" scoped>

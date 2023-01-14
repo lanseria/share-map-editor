@@ -116,6 +116,7 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const operationShow: typeof import('./src/composables/store')['operationShow']
   const osmLocalStyle: typeof import('./src/composables/mapStyle')['osmLocalStyle']
   const osmStyle: typeof import('./src/composables/mapStyle')['osmStyle']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
@@ -450,6 +451,7 @@ declare module 'vue' {
     readonly onStartTyping: UnwrapRef<typeof import('@vueuse/core')['onStartTyping']>
     readonly onUnmounted: UnwrapRef<typeof import('vue')['onUnmounted']>
     readonly onUpdated: UnwrapRef<typeof import('vue')['onUpdated']>
+    readonly operationShow: UnwrapRef<typeof import('./src/composables/store')['operationShow']>
     readonly osmLocalStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['osmLocalStyle']>
     readonly osmStyle: UnwrapRef<typeof import('./src/composables/mapStyle')['osmStyle']>
     readonly pausableWatch: UnwrapRef<typeof import('@vueuse/core')['pausableWatch']>

@@ -37,3 +37,52 @@ export const decodeStr = (data: string) => {
   const resData = JSON.parse(res)
   return resData
 }
+
+export interface OriginDataItem {
+  id: string
+  name: string
+  position: string
+  time: string
+  type: string
+}
+
+export interface CleanDataItem {
+  id: string
+  name: string
+  type: string
+  time: string
+  year: [number, number]
+  position: [number, number]
+}
+
+export const cleanCity = (items: OriginDataItem[]): CleanDataItem[] => {
+  return items.map((item) => {
+    const p = JSON.parse(item.position)
+    const y = item.time.split('-').map(m => +m)
+    if (y.length === 1) {
+      console.error(item)
+      throw new Error('time 只有一个')
+    }
+
+    if (+y[0] > +y[1]) {
+      console.error(item)
+      // throw new Error('time 大小错误')
+      const temp = y[1]
+      y[1] = y[0]
+      y[0] = temp
+    }
+    if (y.length === 3) {
+      y[0] = -y[1]
+      y[1] = y[2]
+    }
+
+    return {
+      id: item.id,
+      name: item.name,
+      type: item.type,
+      time: item.time,
+      year: [+y[0], +y[1]],
+      position: [+p[0], +p[1]],
+    }
+  })
+}
