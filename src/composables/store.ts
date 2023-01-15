@@ -3,8 +3,8 @@ import type { Ref } from 'vue'
 import { flatten, inRange } from 'lodash-es'
 import * as turf from '@turf/turf'
 import { nanoid } from 'nanoid'
-import { CleanDataList, INIt_POINT, LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum } from './constant'
-import { reloadCityLayer } from './mapLayer'
+import { CleanDataList, INIt_POINT, LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum, dynastyList } from './constant'
+// import { reloadCityLayer } from './mapLayer'
 import type { CleanDataItem } from './utils'
 // import { createMapFeature } from './api'
 
@@ -28,56 +28,14 @@ export const mapSearchForm = useStorage('share-map-search-form', {
   isAllYear: false,
 })
 
-export const dynastyType = computed(() => {
-  const time = mapSearchForm.value.year
-  if (time >= -221 && time <= -207)
-    return '秦'
+export const dynastyTypeName = ref('未知')
 
-  if (time >= -206 && time <= 220)
-    return '汉'
-
-  if (time >= 221 && time <= 580)
-    return '三国两晋南北朝'
-
-  if (time >= 581 && time <= 617)
-    return '隋'
-
-  if (time >= 618 && time <= 959)
-    return '唐'
-
-  if (time >= 960 && time <= 1279)
-    return '宋'
-
-  if (time >= 1280 && time <= 1367)
-    return '元'
-
-  if (time >= 1368 && time <= 1643)
-    return '明'
-
-  if (time >= 1644 && time <= 1911)
-    return '清'
-})
-
-export const locationType = computed(() => {
-  const locationTypeMap = {
-    秦: ['郡', '县', '其他'],
-    汉: ['州', '郡/国', '县/侯国', '其他'],
-    三国两晋南北朝: ['州', '郡', '县', '其他'],
-    隋: ['州', '郡', '县', '其他'],
-    唐: ['观察使/防御使/经略使/节度使', '州/郡/府', '县', '其他'],
-    宋: ['路', '州/府/军/监', '县', '其他'],
-    元: ['行省/岭北中书省', '路/府', '州', '县', '其他'],
-    明: ['布政使司/行省', '府', '州', '县', '其他'],
-    清: ['省', '道', '府', '州', '县', '其他'],
-  }
-  return locationTypeMap[dynastyType.value as keyof typeof locationTypeMap]
-})
+export const locationTypeNames = ref<string[]>([])
 
 export const filterCityList = ref<CleanDataItem[]>([])
 
 const processDataFunc = () => {
   const processDataList = mapCityFeatures.value.length === 0 ? CleanDataList : mapCityFeatures.value
-  console.log(processDataList, mapSearchForm.value.isAllYear)
   if (mapSearchForm.value.isAllYear) {
     filterCityList.value = processDataList
   }
@@ -100,11 +58,23 @@ const processDataFunc = () => {
 }
 
 // 大数据延迟处理
+watchEffect(
+  () => {
+    const time = mapSearchForm.value.year
+    dynastyList.forEach((item) => {
+      if (item.start <= time && item.end >= time) {
+        dynastyTypeName.value = item.name
+        locationTypeNames.value = item.types
+      }
+    })
+  },
+)
+
+// 大数据延迟处理
 watchDebounced([
   () => mapCityFeatures.value,
   () => mapSearchForm.value,
 ], () => {
-  console.log('处理中')
   processDataFunc()
 }, { debounce: 300, maxWait: 600, immediate: true })
 
@@ -135,11 +105,6 @@ watchDebounced(() => mapStyle.value, () => {
     reloadSourceLayer()
   }, 100)
 }, { debounce: 100, maxWait: 200 })
-
-watchDebounced(() => filterCityList.value, () => {
-  console.warn('filterCityList changed')
-  reloadCityLayer()
-}, { debounce: 300, maxWait: 600 })
 
 export const handleMapEdit = () => {
   isEdit.value = true

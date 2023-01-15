@@ -85,34 +85,62 @@ export const LayerStyleList = [
   },
 ]
 
-export const DataList = [
+export const DataList = []
+
+export const dynastyList = [
   {
-    id: 'hvd_80045',
-    name: '长城郡',
-    type: 'Changcheng Jun',
-    time: '766-1096',
-    position: '[103.03332, 25.34134]',
+    name: '秦',
+    start: -221,
+    end: -207,
+    types: ['郡', '县', '其他'],
   },
   {
-    id: 'hvd_87484',
-    name: '富昌郡',
-    type: 'Fuchang Jun',
-    time: '2-14',
-    position: '[114.93336, 36.83619]',
+    name: '汉',
+    start: -206,
+    end: 220,
+    types: ['州', '郡/国', '县/侯国', '其他'],
   },
   {
-    id: 'hvd_99278',
-    name: '涪川县',
-    type: 'Fuchuan Xian',
-    time: '585-906',
-    position: '[108.24183, 27.94015]',
+    name: '三国两晋南北朝',
+    start: 221,
+    end: 580,
+    types: ['州', '郡', '县', '其他'],
   },
   {
-    id: 'hvd_163013',
-    name: '（洽甘）井',
-    type: '（Qiagan）Jing',
-    time: '1911-1911',
-    position: '[108.03337, 30.35384]',
+    name: '隋',
+    start: 581,
+    end: 617,
+    types: ['州', '郡', '县', '其他'],
+  },
+  {
+    name: '唐',
+    start: 618,
+    end: 959,
+    types: ['观察使/防御使/经略使/节度使', '州/郡/府', '县', '其他'],
+  },
+  {
+    name: '宋',
+    start: 960,
+    end: 1279,
+    types: ['路', '州/府/军/监', '县', '其他'],
+  },
+  {
+    name: '元',
+    start: 1280,
+    end: 1367,
+    types: ['行省/岭北中书省', '路/府', '州', '县', '其他'],
+  },
+  {
+    name: '明',
+    start: 1368,
+    end: 1643,
+    types: ['布政使司/行省', '府', '州', '县', '其他'],
+  },
+  {
+    name: '清',
+    start: 1644,
+    end: 1911,
+    types: ['省', '道', '府', '州', '县', '其他'],
   },
 ]
 

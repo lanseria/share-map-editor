@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { locationTypeNames } from '~/composables'
+
 const MIN_YEAR = -221
 const MAX_YEAR = 1911
 
@@ -36,7 +38,7 @@ const handleSubmit = () => {
 
     <AFormItem field="filter" tooltip="请筛选地点" label="筛选">
       <a-checkbox-group v-model="mapSearchForm.filter">
-        <a-checkbox v-for="item in locationType" :key="item" :value="item">
+        <a-checkbox v-for="item in locationTypeNames" :key="item" :value="item">
           <template #checkbox="{ checked }">
             <a-tag :checked="checked" color="blue" checkable>
               隐藏{{ item }}

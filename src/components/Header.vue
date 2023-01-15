@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import type { MyFeature } from '~/composables/index'
+import { dynastyTypeName } from '~/composables/index'
 const router = useRouter()
 const route = useRoute()
 const dataVisible = ref(false)
@@ -83,7 +84,7 @@ onMounted(() => {
               编辑地图
             </a-button>
             <a-dropdown :popup-max-height="false">
-              <a-button>未登录 <icon-down /></a-button>
+              <a-button>{{ dynastyTypeName }} <icon-down /></a-button>
               <template #content>
                 <a-doption>Option 1</a-doption>
                 <a-doption disabled>

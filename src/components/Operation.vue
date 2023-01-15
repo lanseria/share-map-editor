@@ -27,15 +27,7 @@ const str = JSON.stringify(reactive({
 }))
 
 const { workerFn, workerStatus, workerTerminate } = useWebWorkerFn((d: string) => {
-  // some heavy works to do in web worker
-  // const jsonText = `[${d}]`
-  // const removeTypeRegex1 = /'type': "(.*?)",\w/
-  // let removeTypeStr = jsonText.replace(removeTypeRegex1, '')
-  // const removeTypeRegex2 = /'type': '(.*?)',\w/
-  // removeTypeStr = removeTypeStr.replace(removeTypeRegex2, '')
-  // const replaceQua = removeTypeStr.replace(/\'/g, '\"')
   const toJsonData = JSON.parse(d)
-  console.warn(toJsonData)
   return toJsonData
 })
 const running = computed(() => workerStatus.value === 'RUNNING')
@@ -43,7 +35,6 @@ const running = computed(() => workerStatus.value === 'RUNNING')
 const handleOpen = async () => {
   await open()
   if (data) {
-    console.warn('process')
     const toJsonData = await workerFn(data.value as string)
     fileShow.value = true
     mapCityFeatures.value = cleanCity(toJsonData)
@@ -57,6 +48,14 @@ const clearStorage = () => {
   localStorage.clear()
   location.reload()
 }
+const { execute, isFetching, error, data: fetchData, abort, canAbort, onFetchResponse, onFetchError } = useFetch('/places_min.json', { immediate: false }).get().json()
+
+onFetchResponse(() => {
+  mapCityFeatures.value = cleanCity(fetchData.value)
+})
+onFetchError(() => {
+  console.warn(error)
+})
 </script>
 
 <template>
@@ -82,6 +81,21 @@ const clearStorage = () => {
       </template>
       {{ operationShow ? '隐藏' : '显示' }}
     </AButton>
+
+    <AButton v-if="!isFetching" @click="execute()">
+      <template #icon>
+        <icon-cloud-download />
+      </template>
+      加载默认数据
+    </AButton>
+
+    <a-button v-else @click="canAbort && abort()">
+      <template #icon>
+        <icon-close />
+      </template>
+      终止(处理中)
+    </a-button>
+
     <a-button v-if="!running" type="dashed" @click="handleOpen()">
       <template #icon>
         <icon-upload />
@@ -91,7 +105,7 @@ const clearStorage = () => {
 
     <a-button v-else type="dashed" @click="workerTerminate('PENDING')">
       <template #icon>
-        <icon-upload />
+        <icon-more />
       </template>
       处理中
     </a-button>

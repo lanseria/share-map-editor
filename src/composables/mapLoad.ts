@@ -41,5 +41,10 @@ export const mapLoad = () => {
   setTimeout(() => {
     reloadSourceLayer()
     reloadCityLayer()
-  }, 1000)
+
+    watchDebounced(() => filterCityList.value, () => {
+      console.warn('filterCityList changed')
+      reloadCityLayer()
+    }, { debounce: 300, maxWait: 600 })
+  }, 2000)
 }

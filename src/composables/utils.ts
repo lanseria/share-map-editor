@@ -41,48 +41,43 @@ export const decodeStr = (data: string) => {
 export interface OriginDataItem {
   id: string
   name: string
-  position: string
-  time: string
+  tName: string
+  pName: string
+  coord: [string, string]
+  time: [string, string]
   type: string
 }
 
 export interface CleanDataItem {
   id: string
   name: string
+  tName: string
+  pName: string
   type: string
-  time: string
   year: [number, number]
   position: [number, number]
 }
 
 export const cleanCity = (items: OriginDataItem[]): CleanDataItem[] => {
   return items.map((item) => {
-    const p = JSON.parse(item.position)
-    const y = item.time.split('-').map(m => +m)
-    if (y.length === 1) {
-      console.error(item)
-      throw new Error('time 只有一个')
-    }
-
-    if (+y[0] > +y[1]) {
-      console.error(item)
+    const y: [number, number] = [+item.time[0], +item.time[1]]
+    const p: [number, number] = [+item.coord[0], +item.coord[1]]
+    if (y[0] > y[1]) {
+      console.warn(item.id, item.name, y[0], y[1])
       // throw new Error('time 大小错误')
       const temp = y[1]
       y[1] = y[0]
       y[0] = temp
     }
-    if (y.length === 3) {
-      y[0] = -y[1]
-      y[1] = y[2]
-    }
 
     return {
       id: item.id,
       name: item.name,
+      tName: item.tName,
+      pName: item.pName,
       type: item.type,
-      time: item.time,
-      year: [+y[0], +y[1]],
-      position: [+p[0], +p[1]],
+      year: [y[0], y[1]],
+      position: p,
     }
   })
 }
