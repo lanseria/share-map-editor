@@ -37,6 +37,7 @@ declare global {
   const autoResetRef: typeof import('@vueuse/core')['autoResetRef']
   const cleanCity: typeof import('./src/composables/utils')['cleanCity']
   const collapsed: typeof import('./src/composables/store')['collapsed']
+  const colorMap: typeof import('./src/composables/constant')['colorMap']
   const computed: typeof import('vue')['computed']
   const computedAsync: typeof import('@vueuse/core')['computedAsync']
   const computedEager: typeof import('@vueuse/core')['computedEager']
@@ -376,6 +377,7 @@ declare module 'vue' {
     readonly autoResetRef: UnwrapRef<typeof import('@vueuse/core')['autoResetRef']>
     readonly cleanCity: UnwrapRef<typeof import('./src/composables/utils')['cleanCity']>
     readonly collapsed: UnwrapRef<typeof import('./src/composables/store')['collapsed']>
+    readonly colorMap: UnwrapRef<typeof import('./src/composables/constant')['colorMap']>
     readonly computed: UnwrapRef<typeof import('vue')['computed']>
     readonly computedAsync: UnwrapRef<typeof import('@vueuse/core')['computedAsync']>
     readonly computedEager: UnwrapRef<typeof import('@vueuse/core')['computedEager']>

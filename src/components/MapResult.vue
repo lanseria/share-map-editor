@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { CleanDataItem } from '~/composables'
-import { INIt_POINT, INIt_ZOOM } from '~/composables'
+import { INIt_POINT, INIt_ZOOM, flattenTypes } from '~/composables'
 
 const onClick = (item: CleanDataItem) => {
   const map = window.map
@@ -43,13 +43,13 @@ const onBack = () => {
             <template #title>
               <div class="cursor-pointer" @click="onClick(item)">
                 {{ item.name }}
-                <!-- <a-tag :color="item.color">
-                  {{ item.type }}
-                </a-tag> -->
+                <a-tag v-if="!flattenTypes.some(k => item.name.endsWith(k))">
+                  其他
+                </a-tag>
               </div>
             </template>
             <template #description>
-              {{ item.year }}
+              begin {{ item.year[0] }} CE end {{ item.year[1] }} CE
             </template>
           </a-list-item-meta>
         </AListItem>

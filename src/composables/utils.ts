@@ -78,7 +78,7 @@ export const cleanCity = (items: OriginDataItem[]): CleanDataItem[] => {
       tName: item.tName,
       pName: item.pName,
       type: item.type,
-      color: colorMap[item.type as keyof typeof colorMap],
+      color: colorMap[item.type as keyof typeof colorMap] || '#BEBEBE',
       year: [y[0], y[1]],
       position: p,
     }

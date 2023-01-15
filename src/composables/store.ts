@@ -34,6 +34,17 @@ export const locationTypeNames = ref<string[]>([])
 
 export const filterCityList = ref<CleanDataItem[]>([])
 
+export const flattenTypes = computed(() => {
+  return locationTypeNames.value.filter(m => m !== '其他')
+})
+
+export const filterFlattenTypes = computed(() => {
+  const types = mapSearchForm.value.filter.map((it) => {
+    return it.split('/')
+  })
+  return flatten(types)
+})
+
 const processDataFunc = () => {
   const processDataList = mapCityFeatures.value.length === 0 ? CleanDataList : mapCityFeatures.value
   if (mapSearchForm.value.isAllYear) {
@@ -45,11 +56,19 @@ const processDataFunc = () => {
         return inRange(mapSearchForm.value.year, item.year[0], item.year[1])
       })
       .filter((item) => {
-        const types = mapSearchForm.value.filter.map((it) => {
-          return it.split('/')
-        })
-        const flattenTypes = flatten(types)
-        return !flattenTypes.some(k => item.name.endsWith(k))
+        // let isOther = false
+        // console.log(filterFlattenTypes)
+        // if (filterFlattenTypes.value.includes('其他'))
+        //   isOther = filterFlattenTypes.value.some(k => item.name.endsWith(k))
+        return !filterFlattenTypes.value.some(k => item.name.endsWith(k))
+      })
+      .filter((item) => {
+        if (filterFlattenTypes.value.includes('其他')) {
+          // console.log(item.name, flattenTypes.value, !flattenTypes.value.some(k => item.name.endsWith(k)))
+          return flattenTypes.value.some(k => item.name.endsWith(k))
+        }
+
+        else { return true }
       })
       .filter((item) => {
         return item.name.match(mapSearchForm.value.locationName)
@@ -69,6 +88,11 @@ watchEffect(
     })
   },
 )
+
+watchDebounced(() => dynastyTypeName, () => {
+  console.warn('朝代changed')
+  mapSearchForm.value.filter = []
+}, { debounce: 300, maxWait: 600, immediate: true })
 
 // 大数据延迟处理
 watchDebounced([
