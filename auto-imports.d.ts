@@ -64,7 +64,8 @@ declare global {
   const drawLine: typeof import('./src/composables/mapLayer')['drawLine']
   const drawPoint: typeof import('./src/composables/mapLayer')['drawPoint']
   const drawPolygon: typeof import('./src/composables/mapLayer')['drawPolygon']
-  const dynastyType: typeof import('./src/composables/store')['dynastyType']
+  const dynastyList: typeof import('./src/composables/constant')['dynastyList']
+  const dynastyTypeName: typeof import('./src/composables/store')['dynastyTypeName']
   const eagerComputed: typeof import('@vueuse/core')['eagerComputed']
   const effectScope: typeof import('vue')['effectScope']
   const encodeStr: typeof import('./src/composables/utils')['encodeStr']
@@ -90,7 +91,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
-  const locationType: typeof import('./src/composables/store')['locationType']
+  const locationTypeNames: typeof import('./src/composables/store')['locationTypeNames']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapCenter: typeof import('./src/composables/store')['mapCenter']
   const mapCityFeatures: typeof import('./src/composables/store')['mapCityFeatures']
@@ -402,7 +403,8 @@ declare module 'vue' {
     readonly drawLine: UnwrapRef<typeof import('./src/composables/mapLayer')['drawLine']>
     readonly drawPoint: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPoint']>
     readonly drawPolygon: UnwrapRef<typeof import('./src/composables/mapLayer')['drawPolygon']>
-    readonly dynastyType: UnwrapRef<typeof import('./src/composables/store')['dynastyType']>
+    readonly dynastyList: UnwrapRef<typeof import('./src/composables/constant')['dynastyList']>
+    readonly dynastyTypeName: UnwrapRef<typeof import('./src/composables/store')['dynastyTypeName']>
     readonly eagerComputed: UnwrapRef<typeof import('@vueuse/core')['eagerComputed']>
     readonly effectScope: UnwrapRef<typeof import('vue')['effectScope']>
     readonly encodeStr: UnwrapRef<typeof import('./src/composables/utils')['encodeStr']>
@@ -428,7 +430,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
-    readonly locationType: UnwrapRef<typeof import('./src/composables/store')['locationType']>
+    readonly locationTypeNames: UnwrapRef<typeof import('./src/composables/store')['locationTypeNames']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapCenter: UnwrapRef<typeof import('./src/composables/store')['mapCenter']>
     readonly mapCityFeatures: UnwrapRef<typeof import('./src/composables/store')['mapCityFeatures']>

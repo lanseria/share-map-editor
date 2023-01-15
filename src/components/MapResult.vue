@@ -34,9 +34,24 @@ const onBack = () => {
     >
       <template #item="{ item, index }">
         <AListItem :key="index">
-          <div class="cursor-pointer" @click="onClick(item)">
-            {{ item.name }}
-          </div>
+          <a-list-item-meta>
+            <template #avatar>
+              <a-avatar :style="{ backgroundColor: item.color }" :size="40" shape="square">
+                {{ item.type }}
+              </a-avatar>
+            </template>
+            <template #title>
+              <div class="cursor-pointer" @click="onClick(item)">
+                {{ item.name }}
+                <!-- <a-tag :color="item.color">
+                  {{ item.type }}
+                </a-tag> -->
+              </div>
+            </template>
+            <template #description>
+              {{ item.year }}
+            </template>
+          </a-list-item-meta>
         </AListItem>
       </template>
     </AList>

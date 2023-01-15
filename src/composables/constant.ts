@@ -122,7 +122,7 @@ export const dynastyList = [
     name: '宋',
     start: 960,
     end: 1279,
-    types: ['路', '州/府/军/监', '县', '其他'],
+    types: ['州/府/军/监', '县', '路', '其他'],
   },
   {
     name: '元',
@@ -143,5 +143,26 @@ export const dynastyList = [
     types: ['省', '道', '府', '州', '县', '其他'],
   },
 ]
+
+export const colorMap = {
+  '国': '#79c0ff',
+  '省': '#79c0ff',
+  '行省/岭北中书省': '#79c0ff',
+  '布政使司/行省': '#79c0ff',
+  '观察使/防御使/经略使/节度使': '#79c0ff',
+  '长史府': '#50C240',
+  '州/府/军/监': '#50C240',
+  '州/郡/府': '#50C240',
+  '路/府': '#50C240',
+  '道': '#50C240',
+  '府': '#F3AE1A',
+  '州': '#F3AE1A',
+  '郡': '#F3AE1A',
+  '郡/国': '#F3AE1A',
+  '县': '#ffb8b8',
+  '县/侯国': '#ffb8b8',
+  '路': '#BEBEBE',
+  '其他': '#BEBEBE',
+}
 
 export const CleanDataList = cleanCity(DataList)

@@ -161,6 +161,7 @@ export const addCitySource = () => {
   const cityMapFeatures = filterCityList.value.map((item) => {
     return turf.point(item.position, {
       name: item.name,
+      color: item.color,
     })
   })
   if (source) {
@@ -190,7 +191,7 @@ export const drawCityPoint = () => {
     layout: {
       'text-field': ['get', 'name'],
       'icon-size': 0.25,
-      'icon-image': '#F3AE1A',
+      'icon-image': ['get', 'color'],
       'text-size': 12,
       'text-offset': [0, 0.5],
       'text-anchor': 'top',

@@ -32,6 +32,9 @@ const handleOk = () => {
 const handleCancel = () => {
   //
 }
+const handleSelect = (v: any) => {
+  mapSearchForm.value.year = dynastyList.find(item => item.name === v)!.start
+}
 onMounted(() => {
   if (route.query.data) {
     decodeData.value = decodeStr(route.query.data as string)
@@ -83,15 +86,12 @@ onMounted(() => {
               </template>
               编辑地图
             </a-button>
-            <a-dropdown :popup-max-height="false">
+            <a-dropdown :popup-max-height="false" @select="handleSelect">
               <a-button>{{ dynastyTypeName }} <icon-down /></a-button>
               <template #content>
-                <a-doption>Option 1</a-doption>
-                <a-doption disabled>
-                  Option 2
+                <a-doption v-for="item in dynastyList" :key="item.name" :disabled="item.name === dynastyTypeName">
+                  {{ item.name }}
                 </a-doption>
-                <a-doption>Option 3</a-doption>
-                <a-doption>Option 4</a-doption>
               </template>
             </a-dropdown>
           </ASpace>

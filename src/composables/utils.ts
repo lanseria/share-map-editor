@@ -1,4 +1,5 @@
 import * as CryptoJS from 'crypto-js'
+import { colorMap } from './constant'
 /**
  * 加密
  * @param paramData 未加密数据
@@ -54,6 +55,7 @@ export interface CleanDataItem {
   tName: string
   pName: string
   type: string
+  color: string
   year: [number, number]
   position: [number, number]
 }
@@ -76,6 +78,7 @@ export const cleanCity = (items: OriginDataItem[]): CleanDataItem[] => {
       tName: item.tName,
       pName: item.pName,
       type: item.type,
+      color: colorMap[item.type as keyof typeof colorMap],
       year: [y[0], y[1]],
       position: p,
     }
