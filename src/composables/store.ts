@@ -3,6 +3,7 @@ import type { Ref } from 'vue'
 import { flatten, inRange } from 'lodash-es'
 import * as turf from '@turf/turf'
 import { nanoid } from 'nanoid'
+import { Message } from '@arco-design/web-vue'
 import { CleanDataList, INIt_POINT, LineStringTypeEnum, PointTypeEnum, PolygonTypeEnum, dynastyList } from './constant'
 // import { reloadCityLayer } from './mapLayer'
 import type { CleanDataItem } from './utils'
@@ -35,7 +36,10 @@ export const locationTypeNames = ref<string[]>([])
 export const filterCityList = ref<CleanDataItem[]>([])
 
 export const flattenTypes = computed(() => {
-  return locationTypeNames.value.filter(m => m !== '其他')
+  const types = locationTypeNames.value.map((it) => {
+    return it.split('/')
+  })
+  return flatten(types).filter(m => m !== '其他')
 })
 
 export const filterFlattenTypes = computed(() => {
@@ -89,8 +93,9 @@ watchEffect(
   },
 )
 
-watchDebounced(() => dynastyTypeName, () => {
+watchDebounced(() => dynastyTypeName.value, () => {
   console.warn('朝代changed')
+  Message.info(dynastyTypeName.value)
   mapSearchForm.value.filter = []
 }, { debounce: 300, maxWait: 600, immediate: true })
 

@@ -73,6 +73,8 @@ declare global {
   const extendRef: typeof import('@vueuse/core')['extendRef']
   const fileShow: typeof import('./src/composables/store')['fileShow']
   const filterCityList: typeof import('./src/composables/store')['filterCityList']
+  const filterFlattenTypes: typeof import('./src/composables/store')['filterFlattenTypes']
+  const flattenTypes: typeof import('./src/composables/store')['flattenTypes']
   const getCurrentInstance: typeof import('vue')['getCurrentInstance']
   const getCurrentScope: typeof import('vue')['getCurrentScope']
   const h: typeof import('vue')['h']
@@ -413,6 +415,8 @@ declare module 'vue' {
     readonly extendRef: UnwrapRef<typeof import('@vueuse/core')['extendRef']>
     readonly fileShow: UnwrapRef<typeof import('./src/composables/store')['fileShow']>
     readonly filterCityList: UnwrapRef<typeof import('./src/composables/store')['filterCityList']>
+    readonly filterFlattenTypes: UnwrapRef<typeof import('./src/composables/store')['filterFlattenTypes']>
+    readonly flattenTypes: UnwrapRef<typeof import('./src/composables/store')['flattenTypes']>
     readonly getCurrentInstance: UnwrapRef<typeof import('vue')['getCurrentInstance']>
     readonly getCurrentScope: UnwrapRef<typeof import('vue')['getCurrentScope']>
     readonly h: UnwrapRef<typeof import('vue')['h']>

@@ -122,7 +122,7 @@ export const dynastyList = [
     name: '宋',
     start: 960,
     end: 1279,
-    types: ['州/府/军/监', '县', '路', '其他'],
+    types: ['路', '州/府/军/监', '县', '其他'],
   },
   {
     name: '元',

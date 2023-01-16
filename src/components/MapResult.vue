@@ -43,7 +43,7 @@ const onBack = () => {
             <template #title>
               <div class="cursor-pointer" @click="onClick(item)">
                 {{ item.name }}
-                <a-tag v-if="!flattenTypes.some(k => item.name.endsWith(k))">
+                <a-tag v-if="!flattenTypes.some(k => item.name.endsWith(k))" size="small">
                   其他
                 </a-tag>
               </div>
